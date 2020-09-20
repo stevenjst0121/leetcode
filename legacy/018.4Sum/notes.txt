@@ -1,0 +1,5 @@
+Same way as 3Sum, need time O(n^3). Be careful with index increments.
+
+Creative idea on LeetCode to avoid unnessary checks. 
+
+Also decrease size of problem 4Sum > 3Sum > 2Sum

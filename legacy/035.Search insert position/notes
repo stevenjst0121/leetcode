@@ -1,0 +1,1 @@
+Notes: Note that in binary search, lo will never be smaller than 0 and will always always always represents a position where nums[lo] <= target

@@ -1,0 +1,2 @@
+Brute Force is NEVER the solution
+Always think of hashMap in problems that needs to look for a number, because lookup in haspMap is almost O(1)

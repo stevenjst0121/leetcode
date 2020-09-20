@@ -1,0 +1,2 @@
+思路: Recursive solution is too time consuming and is not using O(k) space
+思路2: 重复利用一个ArrayList来充分利用空间. 注意特殊条件的添加, 思路可以是先写出主运行条件, 最后回过来看, 如果可以直接运行特殊条件(index = 0), 那么可以省略

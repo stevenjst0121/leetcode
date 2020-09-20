@@ -1,0 +1,1 @@
+notes: 并不是只有sorted array才能用binary search. 根据题目的属性, 只要能判断对于mid向左还是向右都可以用

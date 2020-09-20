@@ -1,0 +1,2 @@
+reminder: Remember to handle situation where only add_one is available, like 5 + 5.
+Try to use inline if condition to have simple code.

@@ -1,0 +1,1 @@
+Hint: Set up dummy ListNode header (used when there is possibility that the head will be removed) and use Prev

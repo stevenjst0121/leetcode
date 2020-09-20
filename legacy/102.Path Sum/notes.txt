@@ -1,0 +1,1 @@
+Be cautious if the question is asking "From root to leaf". Use if root.left == null && root.right == null to check if it is leaf.
