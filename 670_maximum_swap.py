@@ -20,7 +20,7 @@ class Solution:
     #     return int("".join(ans))
 
     def maximumSwap(self, num: int) -> int:
-        """Greedy
+        """Greedy [MEMO]
         For each number, get the last position available
         Loop through nums, find the biggest possible value in the future and swap them
         """

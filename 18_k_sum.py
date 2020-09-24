@@ -14,8 +14,8 @@ class Solution:
 
     def twoSum(self, nums: List[int], start: int, target: int) -> List[List[int]]:
         """
-        Note: Memorize the way to handle duplicates this way with two pointers solution
-        Note: Memorize the way to reduce work with the initial check below in sorted array
+        Note: [MEMO] the way to handle duplicates this way with two pointers solution
+        Note: [MEMO] the way to reduce work with the initial check below in sorted array
         """
         results = []
         if len(nums) - start < 2 or nums[start] * 2 > target or nums[-1] * 2 < target:
@@ -37,8 +37,8 @@ class Solution:
 
     def kSum(self, nums: List[int], start: int, k: int, target: int) -> List[List[int]]:
         """
-        Note: Memorize the way to handle duplicates this way with two pointers solution
-        Note: Memorize the way to reduce work with the initial check below in sorted array
+        Note: [MEMO] the way to handle duplicates this way with two pointers solution
+        Note: [MEMO] the way to reduce work with the initial check below in sorted array
         """
         results = []
         if len(nums) - start < k or nums[start] * k > target or nums[-1] * k < target:

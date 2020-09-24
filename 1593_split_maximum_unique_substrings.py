@@ -8,7 +8,7 @@ class Solution:
         return self.helper_2(s, 0, seen)
 
     def helper(self, s: str, seen: Set):
-        """
+        """[MEMO]
         Questions like such that doesn't seem quite possible to find a mathematical solution but only a brute
         force kind of solution is available, but is hard to write as well, usually recursion is the solution.
 
