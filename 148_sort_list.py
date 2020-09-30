@@ -23,7 +23,8 @@ class Solution:
     def sortList(self, head: ListNode) -> ListNode:
         """
         Note 1: No need to calculate length, just have one pointer move twice as faster, make sure to use a dummyHead to start with
-        ??? : This is top-down approach, which uses O(logN) space due to recursive call stack, use bottom-up approach to use O(1) space
+        Note 2: This is top-down approach, which uses O(logN) space due to recursive call stack, use bottom-up approach to use O(1) space. Though time is still O(logN)
+        Note 3: When merging, don't create new nodes. Existing nodes can be used directly.
         """
         return self.sortListHelper(head)
 
@@ -59,18 +60,26 @@ class Solution:
         return (head_1, head_2)
 
     def merge(self, head_1: ListNode, head_2: ListNode) -> ListNode:
+        """
+        MEMO
+        """
         dummyHead = ListNode()
         curr = dummyHead
 
         curr_1 = head_1
         curr_2 = head_2
-        while curr_1 is not None or curr_2 is not None:
-            if curr_1 is None or (curr_2 is not None and curr_1.val >= curr_2.val):
-                curr.next = ListNode(val=curr_2.val)
+        while curr_1 is not None and curr_2 is not None:
+            if curr_1.val >= curr_2.val:
+                curr.next = curr_2
                 curr_2 = curr_2.next
             else:
-                curr.next = ListNode(val=curr_1.val)
+                curr.next = curr_1
                 curr_1 = curr_1.next
             curr = curr.next
+
+        if curr_1 is not None:
+            curr.next = curr_1
+        if curr_2 is not None:
+            curr.next = curr_2
 
         return dummyHead.next
