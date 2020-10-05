@@ -41,9 +41,10 @@ class Solution:
         stack = deque()
         curr = root
         while curr or stack:
-            while curr:
+            if curr:
                 stack.append(curr)
                 curr = curr.left
+                continue
 
             curr = stack.pop()
             result.append(curr.val)

@@ -38,16 +38,18 @@ class Solution:
         if not root:
             return []
 
-        stack = deque()
-        stack.append(root)
         result = []
-        while stack:
+        stack = deque()
+        curr = root
+        while curr or stack:
+            if curr:
+                result.append(curr.val)
+                if curr.right:
+                    stack.append(curr.right)
+                curr = curr.left
+                continue
+
             curr = stack.pop()
-            result.append(curr.val)
-            if curr.right:
-                stack.append(curr.right)
-            if curr.left:
-                stack.append(curr.left)
         return result
 
         # """Morris"""

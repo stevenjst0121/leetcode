@@ -21,22 +21,56 @@ def generate_list(list: List) -> ListNode:
 
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
-        """
-        Note 1: Check palindrome over list is easy, use two pointers
-        Note 2: [MEMO] Recursion
-        Note 3: Reverse second half and then compare two lists
-        """
-        self.front = head
-        return self.isParlindromeHelper(head)
-
-    def isParlindromeHelper(self, curr: ListNode) -> bool:
-        if not curr:
+        if not head or not head.next:
             return True
 
-        if not self.isParlindromeHelper(curr.next):
-            return False
-        if self.front.val == curr.val:
-            self.front = self.front.next
-            return True
+        dummyHead = ListNode()
+        dummyHead.next = head
+        slow = fast = dummyHead
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-        return False
+        first = head
+        second = slow.next
+        slow.next = None
+
+        # Reverse second list
+        dummyHead = ListNode()
+        curr = second
+        while curr:
+            next = curr.next
+            curr.next = dummyHead.next
+            dummyHead.next = curr
+            curr = next
+        second = dummyHead.next
+
+        # Compare two lists
+        while first and second:
+            if first.val != second.val:
+                return False
+            first = first.next
+            second = second.next
+
+        return True
+
+    # def isPalindrome(self, head: ListNode) -> bool:
+    #     """
+    #     Note 1: Check palindrome over list is easy, use two pointers
+    #     Note 2: [MEMO] Recursion, this is advanced, but it's NOT O(1) space!!!
+    #     Note 3: Reverse second half and then compare two lists
+    #     """
+    #     self.front = head
+    #     return self.isParlindromeHelper(head)
+
+    # def isParlindromeHelper(self, curr: ListNode) -> bool:
+    #     if not curr:
+    #         return True
+
+    #     if not self.isParlindromeHelper(curr.next):
+    #         return False
+    #     if self.front.val == curr.val:
+    #         self.front = self.front.next
+    #         return True
+
+    #     return False
