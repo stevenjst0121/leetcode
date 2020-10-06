@@ -41,6 +41,14 @@ def list_pass_object_by_reference_while_looping():
     print(d is d2)
 
 
+def test_string_immutable():
+    words = ["abc", "def"]
+    for word in words:
+        word = "***"
+    print(words)
+
+
 if __name__ == "__main__":
     # test_range()
-    list_pass_object_by_reference_while_looping()
+    # list_pass_object_by_reference_while_looping()
+    test_string_immutable()
