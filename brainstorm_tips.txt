@@ -1,8 +1,12 @@
 BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 =======================================
 
+** Really really understand the question, and ask clarification questions
+
 ** Sometimes, it's just helpful to draw the damn array/list/map on paper to visualize it
 
 ** If current algo's time complexity is too high, try to increase space (store something useful).
 
-* If looping from start doesn't help, how about looping from the end?
+* If looping from start doesn't help, how about looping from the end? Or from both sides?
+
+* If a problem can be solved recursively, can it be solved iteratively? Can DP be used to optimize it?

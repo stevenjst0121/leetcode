@@ -1,0 +1,16 @@
+https://www.educative.io/courses/grokking-dynamic-programming-patterns-for-coding-interviews/m2G1pAq0OO0
+
+Dynamic Programming (DP) is an algorithmic technique for solving an optimization problem by breaking it down into simpler subproblems and utilizing the fact that the optimal solution to the overall problem depends upon the optimal solution to its subproblems.
+
+1. Overlapping Subproblems
+For exmaple, f(n) recursion solution may call f(m) multiple times
+
+2. Optimal Substructure Property
+Any problem has optimal substructure property if its overall optimal solution can be constructed from the optimal solutions of its subproblems.
+
+DP Methods
+1. Top-down with Memoization
+Recursion with memoization
+
+2. Bottom-up with Tabulation
+Tabulation is the opposite of the top-down approach and avoids recursion.
