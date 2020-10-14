@@ -8,8 +8,17 @@ def test_range():
     # for i in range(2, 1):
     #     print(i)
 
-    for i in range(3, -1, -1):
-        print(i)
+    # for i in range(3, -1, -1):
+    #     print(i)
+
+    for k in range(0, 1):
+        print(k)
+
+
+def test_list():
+    l = [1, 2, 3, 4, 5]
+    l[1:1] = []
+    print(l)
 
 
 class ListNode:
@@ -51,4 +60,5 @@ def test_string_immutable():
 if __name__ == "__main__":
     # test_range()
     # list_pass_object_by_reference_while_looping()
-    test_string_immutable()
+    # test_string_immutable()
+    test_list()
