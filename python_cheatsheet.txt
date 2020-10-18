@@ -1,0 +1,90 @@
+PYTHON CHEAT SHEET
+==================
+
+deque
+------------------
+from collections import deque
+
+append(x)
+appendleft(x)
+count(x) # count number of x in deque
+extend(iterable)
+extendleft(iterable)
+insert(i, x)
+pop() # remove and return from right
+popleft()
+
+Queue
+------------------
+from queue import Queue
+From queue import PriorityQueue
+
+empty()
+full()
+put()
+get()
+
+
+Mutable Sequence Types
+------------------
+s[i]
+s[i:j]
+s[i:j:k]
+del s[i:j:k]
+s.append(x)
+s.clear()
+s.copy() # same as s[:]
+s.extend(iterable) # same as s += t
+s.insert(i, x)
+s.pop([i]) # retrieves the item at i and also removes it from s
+s.remove(x) # remove the first item from s where s[i] is equal to x
+
+
+dict
+------------------
+list(d) # Return a list of all the keys used in the dictionary d.
+del d[key]
+key in d
+key not in d
+iter(d) # same as iter(d.keys()), Return an iterator over the keys of the dictionary
+items() # ** Return a new view of the dictionary’s items ((key, value) pairs).
+update(dict)
+values()
+
+collections.defaultdict(list) # When subscripting, if key not found, create default type
+
+Use tuple() as key to simply store multiple values as key in a dictionary
+
+# To use custom class with dict, define __hash__() and __eq__()
+# In __hash__(), naively do something like return hash((self.begin, self.end))
+
+list
+------------------
+sort() # sort the items in place
+
+
+********IMPORTANT*********
+Though python objects are passed by reference, but reference is not POINTER!
+Meaning, you can change member variables of an object by its reference, but if you want to change the object completely (e.g. using assignment), you can't just do that.
+
+Array slicing notation
+------------------
+https://railsware.com/blog/python-for-machine-learning-indexing-and-slicing-for-lists-tuples-strings-and-other-sequential-types/
+nums[:5] # first 5
+nums[-3:] # last 3
+nums[:-2] # all but last two elements
+nums[::2] # evetn 2nd element
+
+heapq
+------------------
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+
+Inserting into a heap of size n is O(n)
+
+queue = list()
+heapq.heappush(queue, num)
+heapq.heappop(queue)
+...
+
+# To use heapq with custom class, define __lt__()
+

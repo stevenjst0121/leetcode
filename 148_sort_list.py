@@ -25,6 +25,7 @@ class Solution:
         Note 1: No need to calculate length, just have one pointer move twice as faster, make sure to use a dummyHead to start with
         Note 2: This is top-down approach, which uses O(logN) space due to recursive call stack, use bottom-up approach to use O(1) space. Though time is still O(logN)
         Note 3: When merging, don't create new nodes. Existing nodes can be used directly.
+        Note 4: Top-down approach uses O(logN) space due to recursion. Do bottom-up interations to use O(1) space
         """
         return self.sortListHelper(head)
 

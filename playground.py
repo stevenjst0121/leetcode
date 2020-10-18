@@ -1,3 +1,4 @@
+import heapq
 from typing import *
 
 
@@ -57,8 +58,45 @@ def test_string_immutable():
     print(words)
 
 
+class Interval:
+    def __init__(self, begin: int = 0, end: int = 0):
+        self.begin = begin
+        self.end = end
+
+    def __lt__(self, other):
+        return self.begin < other.begin
+
+    def __repr__(self):
+        return f"[{self.begin}, {self.end}]"
+
+    def __hash__(self):
+        return hash((self.begin, self.end))
+
+    def __eq__(self, other):
+        return self.begin == other.begin and self.end == other.end
+
+
+def test_heapq():
+    l = []
+    heapq.heappush(l, Interval(1, 3))
+    heapq.heappush(l, Interval(1, 2))
+    heapq.heappush(l, Interval(2, 4))
+    heapq.heappush(l, Interval(5, 8))
+    heapq.heappush(l, Interval(7, 9))
+    print(l)
+
+
+def test_dict_hash():
+    d = {}
+    d[Interval(1, 3)] = "1,3"
+    d[Interval(2, 4)] = "2,4"
+    print(d)
+
+
 if __name__ == "__main__":
     # test_range()
     # list_pass_object_by_reference_while_looping()
     # test_string_immutable()
-    test_list()
+    # test_list()
+    test_heapq()
+    test_dict_hash()

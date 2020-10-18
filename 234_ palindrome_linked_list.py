@@ -58,6 +58,7 @@ class Solution:
     #     """
     #     Note 1: Check palindrome over list is easy, use two pointers
     #     Note 2: [MEMO] Recursion, this is advanced, but it's NOT O(1) space!!!
+    #     Pretty much same as puting into reverse queue. But this only loops n once.
     #     Note 3: Reverse second half and then compare two lists
     #     """
     #     self.front = head

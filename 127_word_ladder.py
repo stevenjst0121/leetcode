@@ -99,6 +99,8 @@ class Solution:
     # def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
     #     """
     #     [MEMO] BFS Approach using queue
+    #     Using a queue helps to reduce search (search level by level, and we can remove
+    #     the level from allcombos completely after a level is added to queue)
     #     """
     #     if endWord not in wordList or not wordList:
     #         return 0
