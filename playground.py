@@ -93,10 +93,29 @@ def test_dict_hash():
     print(d)
 
 
+def test_bit_manipulation():
+    def get_bit(x: int) -> str:
+        result = ""
+        while int(x / 2):
+            bit = x % 2
+            result = str(bit) + result
+            x = int(x / 2)
+
+        if x % 2:
+            result = "1" + result
+
+        return result
+
+    print(get_bit(1))
+    print(get_bit(10))
+    print(get_bit(100))
+
+
 if __name__ == "__main__":
     # test_range()
     # list_pass_object_by_reference_while_looping()
     # test_string_immutable()
     # test_list()
-    test_heapq()
-    test_dict_hash()
+    # test_heapq()
+    # test_dict_hash()
+    test_bit_manipulation()
