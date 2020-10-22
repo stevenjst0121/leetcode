@@ -87,4 +87,12 @@ heapq.heappop(queue)
 ...
 
 # To use heapq with custom class, define __lt__()
+# OR
+# Just push tuple like (key, value) into heap, it will just use first element for sorting
+
+random number generator
+------------------
+random.randrange(start, stop, step)
+ # E.g., generate random number between 1-25 inclusively
+randrange(1, 26, 1)
 
