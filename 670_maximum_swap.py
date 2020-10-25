@@ -22,7 +22,7 @@ class Solution:
     def maximumSwap(self, num: int) -> int:
         """Greedy [MEMO]
         For each number, get the last position available
-        Loop through nums, find the biggest possible value in the future and swap them
+        Loop through nums from left, find the biggest possible value in right and swap them
         """
         nums = list(str(num))
         last = {int(n): i for i, n in enumerate(nums)}
