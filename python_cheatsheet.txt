@@ -96,3 +96,10 @@ random.randrange(start, stop, step)
  # E.g., generate random number between 1-25 inclusively
 randrange(1, 26, 1)
 
+OrderedDict
+------------------
+It's implemented as a hashmap + double linked-list to track position of node
+insert is O(1) # for both hashmap insert and O(n) for linked_list insert
+access is O(1) # for hashmap
+del is O(1) # delete from hasmap and double linked-list are both O(1)
+
