@@ -10,3 +10,5 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 * If looping from start doesn't help, how about looping from the end? Or from both sides?
 
 * If a problem can be solved recursively, can it be solved iteratively? Can DP be used to optimize it?
+
+* When see a problem that limits to the scope of 26 characters or similar, think of using an array[26]
