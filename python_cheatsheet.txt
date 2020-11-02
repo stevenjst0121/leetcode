@@ -103,3 +103,11 @@ insert is O(1) # for both hashmap insert and O(n) for linked_list insert
 access is O(1) # for hashmap
 del is O(1) # delete from hasmap and double linked-list are both O(1)
 
+zip
+------------------
+Use zip to do iterations with two lists (where one list can be shorter than the other)
+for first_word, second_word in zip(words, words[1:]):
+
+for...else...
+------------------
+else for iteration, triggers when the loop exhausts (looped through everything without break)

@@ -12,3 +12,10 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 * If a problem can be solved recursively, can it be solved iteratively? Can DP be used to optimize it?
 
 * When see a problem that limits to the scope of 26 characters or similar, think of using an array[26]
+
+* When need to use a queue/stack, it's always follows
+    1. Initialize the queue/stack with some variables
+    2. while queue/stack:
+    3. Pop item from the queue/stack, deal with the item
+    4. Add more items to queue/stack as needed for next iteration
+(For graph traversal, use queue for BFS, use stack for DFS)
