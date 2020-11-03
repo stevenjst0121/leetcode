@@ -3,7 +3,7 @@ from random import randrange, random
 
 
 class Solution:
-    # TODO Think O(1) lookup solution
+    # Think O(1) lookup solution
 
     def __init__(self, w: List[int]):
         self.w = w
