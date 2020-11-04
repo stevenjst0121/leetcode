@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    # TODO Look at other solutions
+    # TODO Look at other solutions - Disjoint Set
     def numIslands(self, grid: List[List[str]]) -> int:
         """Draft 1
         Recursive search, very similar logic to DFS treating the grid as an undirected graph
