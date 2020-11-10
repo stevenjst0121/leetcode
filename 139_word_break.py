@@ -5,7 +5,7 @@ class Solution:
     class TrieNode:
         def __init__(self, val: str = None):
             """
-            [MEMO] Implementation of TrieNode
+            Implementation of TrieNode, see 211 for better implementation
             """
             self.val = val
             self.children = {}  # char -> Node

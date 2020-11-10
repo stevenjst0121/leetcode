@@ -1,6 +1,6 @@
 class WordDictionary:
     """Solution 1
-    [MEMO] Use dict to implement trie, use "$" to indicate is end. Memorize the way to how add "$" and check "$"
+    [MEMO MEMO] Use dict to implement trie, use "$" to indicate is end. Memorize the way to how add "$" and check "$"
     My original passed code had similar approach (with customized data structure instead of just using dict, and more code...)
     Solution is not faster than own code
     """

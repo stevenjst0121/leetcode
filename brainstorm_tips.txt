@@ -19,3 +19,20 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
     3. Pop item from the queue/stack, deal with the item
     4. Add more items to queue/stack as needed for next iteration
 (For graph traversal, use queue for BFS, use stack for DFS)
+
+
+
+
+
+Things to Remember
+=======================================
+Find mid point of linked list
+
+slow = head
+fast = head
+while fast and fast.next:
+    slow = slow.next
+    fast = fast.next.next
+
+If there are 5 nodes, i will be on 3rd node
+If there are 6 nodes, i will be on 3rd node

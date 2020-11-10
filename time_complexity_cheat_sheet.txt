@@ -1,0 +1,5 @@
+Binary Heap
+===========
+Insert - O(log N) // best O(1), put element at left most available spot, and keep swapping with parent if needed
+Search - O(log N) // best O(1)
+Find min - O(1)
