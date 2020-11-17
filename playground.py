@@ -83,6 +83,19 @@ def test_heapq():
     heapq.heappush(l, Interval(2, 4))
     heapq.heappush(l, Interval(5, 8))
     heapq.heappush(l, Interval(7, 9))
+    # print(l)
+
+    l = [
+        (65, 424),
+        (351, 507),
+        (314, 807),
+        (387, 722),
+        (19, 797),
+        (259, 722),
+        (165, 221),
+        (136, 897),
+    ]
+    heapq.heapify(l)
     print(l)
 
 
@@ -116,6 +129,6 @@ if __name__ == "__main__":
     # list_pass_object_by_reference_while_looping()
     # test_string_immutable()
     # test_list()
-    # test_heapq()
+    test_heapq()
     # test_dict_hash()
-    test_bit_manipulation()
+    # test_bit_manipulation()
