@@ -5,6 +5,27 @@ from collections import *
 
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
+        """Solution
+        [MEMO] From right, find first a[i] < a[i + 1], i is the place to change
+        [MEMO] Also the fact that replacing the smallest item from right, the right part is already sorted in desc, just reverse
+        """
+        i = len(nums) - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+
+        if i < 0:
+            # [NOTE] cannot do nums = nums[::-1] since this does not modify nums in place
+            nums.reverse()
+            return
+
+        j = len(nums) - 1
+        while j >= i and nums[j] <= nums[i]:
+            j -= 1
+        nums[i], nums[j] = nums[j], nums[i]
+        # [NOTE] reversed returns an iterator, but can be used for direct assign to list
+        nums[i + 1 :] = reversed(nums[i + 1 :])
+
+    def nextPermutation(self, nums: List[int]) -> None:
         """"""
         if not self.nextPermutationHelper(nums, len(nums) - 2):
             nums.sort()
