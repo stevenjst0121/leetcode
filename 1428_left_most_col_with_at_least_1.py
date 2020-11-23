@@ -8,9 +8,21 @@
 
 
 class Solution:
-    """Solution 3
-    Start from the top, and only move left and down
-    """
+    def leftMostColumnWithOne(self, binaryMatrix: "BinaryMatrix") -> int:
+        """Solution 3
+        Start from the top, and only move left and down
+        """
+        rows, cols = binaryMatrix.dimensions()
+        row = 0
+        col = cols - 1
+
+        while row < rows and col >= 0:
+            if binaryMatrix.get(row, col) == 0:
+                row += 1
+            else:
+                col -= 1
+
+        return col + 1 if col != cols - 1 else -1
 
     def leftMostColumnWithOne(self, binaryMatrix: "BinaryMatrix") -> int:
         """Draft 1

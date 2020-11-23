@@ -129,6 +129,7 @@ class Solution:
 
     def partition_helper(self, nums: List[int], low: int, high: int):
         """
+        [MEMO] How to do partition in quick sort
         Tip: While looping, make sure to skip the pivot index (in this case it's just high)
         """
         i = low

@@ -8,58 +8,56 @@ class Solution:
         [MEMO] Use union on set
         [MEMO] String builder implementation
         """
-        stack = deque()
+        opens = []  # stack of open indices
         to_remove = set()
         for i, c in enumerate(s):
             if c == "(":
-                stack.append(i)
+                opens.append(i)
             elif c == ")":
-                if stack:
-                    stack.pop()
-                else:
+                if not opens:
+                    # invalid ), skip
                     to_remove.add(i)
+                else:
+                    opens.pop()
 
-        to_remove = to_remove.union(set(stack))
-        string_builder = []
-        for i, c in enumerate(s):
-            if i not in to_remove:
-                string_builder.append(c)
-        return "".join(string_builder)
+        to_remove = to_remove.union(set(opens))
+        str_builder = [c for i, c in enumerate(s) if i not in to_remove]
+        return "".join(str_builder)
 
-    # def minRemoveToMakeValid(self, s: str) -> str:
-    #     """Solution 3
-    #     Build string while looping
-    #     """
-    #     # First round remove all invalid ")"
-    #     first_parse_chars = []
-    #     balance = 0
-    #     open_seen = 0
-    #     for c in s:
-    #         if c == "(":
-    #             balance += 1
-    #             open_seen += 1
-    #         elif c == ")":
-    #             if balance == 0:
-    #                 continue
-    #             balance -= 1
+    def minRemoveToMakeValid(self, s: str) -> str:
+        """Solution 3
+        Build string while looping
+        """
+        # First round remove all invalid ")"
+        first_parse_chars = []
+        balance = 0
+        open_seen = 0
+        for c in s:
+            if c == "(":
+                balance += 1
+                open_seen += 1
+            elif c == ")":
+                if balance == 0:
+                    continue
+                balance -= 1
 
-    #         first_parse_chars.append(c)
+            first_parse_chars.append(c)
 
-    #     # Check balance
-    #     if balance == 0:
-    #         return "".join(first_parse_chars)
+        # Check balance
+        if balance == 0:
+            return "".join(first_parse_chars)
 
-    #     # Second round remove all invalid "(" from right
-    #     result = []
-    #     open_to_keep = open_seen - balance
-    #     for c in first_parse_chars:
-    #         if c != "(":
-    #             result.append(c)
+        # Second round remove all invalid "(" from right
+        result = []
+        open_to_keep = open_seen - balance
+        for c in first_parse_chars:
+            if c != "(":
+                result.append(c)
 
-    #         if c == "(" and open_to_keep > 0:
-    #             result.append(c)
-    #             open_to_keep -= 1
-    #     return "".join(result)
+            if c == "(" and open_to_keep > 0:
+                result.append(c)
+                open_to_keep -= 1
+        return "".join(result)
 
     # def minRemoveToMakeValid(self, s: str) -> str:
     #     """Draft 1
