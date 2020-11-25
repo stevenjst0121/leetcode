@@ -5,6 +5,56 @@ from collections import *
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        """Draft 2
+        Divide and conqur to find a target
+        +
+        Divide and conqur to find min/max
+        """
+        index = self.searchTarget(nums, 0, len(nums) - 1, target)
+        if index < 0:
+            return [-1, -1]
+
+        min = self.searchMin(nums, 0, index, target)
+        max = self.searchMax(nums, index, len(nums) - 1, target)
+        return [min, max]
+
+    def searchTarget(self, nums: List[int], start: int, end: int, target: int) -> int:
+        if start > end:
+            return -1
+
+        mid = start + (end - start) // 2
+        num = nums[mid]
+        if num == target:
+            return mid
+
+        if num > target:
+            return self.searchTarget(nums, start, mid - 1, target)
+        else:
+            return self.searchTarget(nums, mid + 1, end, target)
+
+    def searchMin(self, nums: List[int], start: int, end: int, target: int) -> int:
+        mid = start + (end - start) // 2
+        num = nums[mid]
+        if num == target:
+            if mid == start or nums[mid - 1] != target:
+                return mid
+            else:
+                return self.searchMin(nums, start, mid - 1, target)
+        else:
+            return self.searchMin(nums, mid + 1, end, target)
+
+    def searchMax(self, nums: List[int], start: int, end: int, target: int) -> int:
+        mid = start + (end - start) // 2
+        num = nums[mid]
+        if num == target:
+            if mid == end or nums[mid + 1] != target:
+                return mid
+            else:
+                return self.searchMax(nums, mid + 1, end, target)
+        else:
+            return self.searchMax(nums, start, mid - 1, target)
+
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
         """
         Simple binary search only beats 36%
         Need to add avoid duplicates to beat 90%
