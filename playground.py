@@ -124,11 +124,31 @@ def test_bit_manipulation():
     print(get_bit(100))
 
 
+class Node:
+    def __init__(self, x: int, next: "Node" = None, random: "Node" = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+        self.l = [1, 2, 3]
+
+
+def is_node_hashable():
+    node_0 = Node(0)
+    maps = {}
+    maps[node_0] = 0
+    node_1 = Node(0)
+    maps[node_1] = 1
+    assert len(maps) == 2
+    assert maps[node_0] == 0
+    assert maps[node_1] == 1
+
+
 if __name__ == "__main__":
     # test_range()
     # list_pass_object_by_reference_while_looping()
     # test_string_immutable()
     # test_list()
-    test_heapq()
+    # test_heapq()
     # test_dict_hash()
     # test_bit_manipulation()
+    is_node_hashable()
