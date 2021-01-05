@@ -14,16 +14,6 @@ insert(i, x)
 pop() # remove and return from right
 popleft()
 
-Queue
-------------------
-from queue import Queue
-From queue import PriorityQueue
-
-empty()
-full()
-put()
-get()
-
 
 Mutable Sequence Types
 ------------------
