@@ -1,3 +1,11 @@
+"""
+How to run with command line input:
+$ python3.8 arcade_gamer.py
+
+How to run unit test with pytest:
+$ python3.8 -m pytest arcade_gamer.py
+"""
+
 import sys
 from typing import List, Set
 
@@ -50,25 +58,37 @@ class Solution:
         return result
 
     def find_best_strategy_no_class(self, games: List, time_left: int) -> List:
-        # Assume game is tuple in such format: (name, time, reward)
+        """
+        Description:
+            Given a list of games and how much time left to play, return
+            a list of games to play that will result in most rewards
+        """
         if not games:
+            # no game to play
             return []
 
         result = []
-        best_reward = 0
+        best_reward = 0  # total reward of result
         for game in games:
+            # Loop through all games and try to play the game
             if game[1] > time_left:
+                # Since we have sorted all games by time, if the current game exceeds
+                # the time limit already, there is no need to try further
                 break
 
-            # play this game
+            # Play this game
             new_games = games.copy()
             new_games.remove(game)
+            # Recursively call the same function and find the best strategy to play
+            # the rest of games using time left
             to_play = self.find_best_strategy_no_class(new_games, time_left - game[1])
 
-            # calculate reward
+            # Calculate reward
             reward = game[2]
             for played in to_play:
                 reward += played[2]
+
+            # Set result to current strategy if the current reward is better
             if reward > best_reward:
                 best_reward = reward
                 result = []
@@ -100,14 +120,18 @@ def load_games_no_class() -> List:
     num_lines = sys.stdin.readline()
     num_lines = int(num_lines)
 
+    # Read games line-by-line and add all games to a list
     games = []
     for _ in range(num_lines):
         line = sys.stdin.readline()
         data = line.split(",")
         assert len(data) == 3
 
+        # Each game is a tuple in such format of (name, time, reward)
         game = (data[0], int(data[1]), int(data[2]))
         games.append(game)
+
+    # Sort all games by time
     games.sort(key=lambda x: x[1])
     return games
 
@@ -118,9 +142,9 @@ def output(result: List) -> None:
 
 
 def main():
-    games = load_games_class()
+    games = load_games_no_class()
     solution = Solution()
-    result = solution.find_best_strategy_class(games, MAX_TIME)
+    result = solution.find_best_strategy_no_class(games, MAX_TIME)
     output(result)
 
 
