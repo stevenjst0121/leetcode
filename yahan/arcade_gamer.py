@@ -22,8 +22,7 @@ class Game:
 
 
 class Solution:
-    def find_best_strategy(self, games: List, time_left: int) -> List:
-        # return list of games
+    def find_best_strategy_class(self, games: List, time_left: int) -> List:
         if not games:
             return []
 
@@ -36,7 +35,7 @@ class Solution:
             # play this game
             new_games = games.copy()
             new_games.remove(game)
-            to_play = self.find_best_strategy(new_games, time_left - game.time)
+            to_play = self.find_best_strategy_class(new_games, time_left - game.time)
 
             # calculate reward
             reward = game.reward
@@ -50,8 +49,36 @@ class Solution:
 
         return result
 
+    def find_best_strategy_no_class(self, games: List, time_left: int) -> List:
+        # Assume game is tuple in such format: (name, time, reward)
+        if not games:
+            return []
 
-def load_games() -> List:
+        result = []
+        best_reward = 0
+        for game in games:
+            if game[1] > time_left:
+                break
+
+            # play this game
+            new_games = games.copy()
+            new_games.remove(game)
+            to_play = self.find_best_strategy_no_class(new_games, time_left - game[1])
+
+            # calculate reward
+            reward = game[2]
+            for played in to_play:
+                reward += played[2]
+            if reward > best_reward:
+                best_reward = reward
+                result = []
+                result.append(game)
+                result.extend(to_play)
+
+        return result
+
+
+def load_games_class() -> List:
     # Load data in time-sorted order
     num_lines = sys.stdin.readline()
     num_lines = int(num_lines)
@@ -68,15 +95,32 @@ def load_games() -> List:
     return games
 
 
+def load_games_no_class() -> List:
+    # Load data in time-sorted order
+    num_lines = sys.stdin.readline()
+    num_lines = int(num_lines)
+
+    games = []
+    for _ in range(num_lines):
+        line = sys.stdin.readline()
+        data = line.split(",")
+        assert len(data) == 3
+
+        game = (data[0], int(data[1]), int(data[2]))
+        games.append(game)
+    games.sort(key=lambda x: x[1])
+    return games
+
+
 def output(result: List) -> None:
     for game in result:
         print(game.name)
 
 
 def main():
-    games = load_games()
+    games = load_games_class()
     solution = Solution()
-    result = solution.find_best_strategy(games, MAX_TIME)
+    result = solution.find_best_strategy_class(games, MAX_TIME)
     output(result)
 
 
@@ -85,7 +129,7 @@ if __name__ == "__main__":
 
 
 # Test
-def test_given_dataset():
+def test_given_dataset_class():
     # GIVEN
     games = []
     games.append(Game("Pac-man", 80, 400))
@@ -100,10 +144,34 @@ def test_given_dataset():
     solution = Solution()
 
     # THEN
-    result = solution.find_best_strategy(games, MAX_TIME)
+    result = solution.find_best_strategy_class(games, MAX_TIME)
     assert result == [
         Game("Motal Kombat", 10, 30),
         Game("Pump it Up", 10, 40),
         Game("Speed Racer", 10, 40),
         Game("Street Fighter II", 90, 450),
+    ]
+
+
+def test_given_dataset_no_class():
+    # GIVEN
+    games = []
+    games.append(("Pac-man", 80, 400))
+    games.append(("Motal Kombat", 10, 30))
+    games.append(("Super Tetris", 25, 100))
+    games.append(("Pump it Up", 10, 40))
+    games.append(("Street Fighter II", 90, 450))
+    games.append(("Speed Racer", 10, 40))
+    games.sort(key=lambda x: x[1])  # sort by time
+
+    # WHEN
+    solution = Solution()
+
+    # THEN
+    result = solution.find_best_strategy_no_class(games, MAX_TIME)
+    assert result == [
+        ("Motal Kombat", 10, 30),
+        ("Pump it Up", 10, 40),
+        ("Speed Racer", 10, 40),
+        ("Street Fighter II", 90, 450),
     ]
