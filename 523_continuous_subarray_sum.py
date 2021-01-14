@@ -4,7 +4,7 @@ from typing import List
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         """Solution 3
-        [MEMO MEMO] I was able to think of storing cumulative sum, but did not come up with an O(N) solution
+        [MEMO+1] I was able to think of storing cumulative sum, but did not come up with an O(N) solution
         When think about solutions around using cum sum, think about how the diffs between two sums can help
         This is so fucking brilliant!!!
         """

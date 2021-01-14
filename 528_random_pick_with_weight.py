@@ -17,7 +17,7 @@ class Solution:
     def pickIndex(self) -> int:
         target = self.total * random.random()
         # run a binary search to find the target zone
-        """[MEMO MEMO] Easiest way to write binary search without recursion"""
+        """[MEMO+1] Easiest way to write binary search without recursion"""
         low, high = 0, len(self.w_accumulate) - 1
         while low < high:
             mid = (low + high) // 2

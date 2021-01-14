@@ -27,6 +27,7 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 Things to Remember
 =======================================
 Find mid point of linked list
+---------------------------------------
 
 slow = head
 fast = head
@@ -36,3 +37,15 @@ while fast and fast.next:
 
 If there are 5 nodes, i will be on 3rd node
 If there are 6 nodes, i will be on 3rd node
+
+Traverse graph problems
+---------------------------------------
+DFS
+ - use a stack
+ - push first node in
+ - `while stack:`
+ - pop node out
+ - `for nei in node:`
+ - do something and push nei to stack
+ - use visied to keep track
+ - (Can also use coloring to mark nodes if needed)
