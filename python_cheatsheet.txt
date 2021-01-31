@@ -102,3 +102,34 @@ for...else...
 ------------------
 
 Beats 96%else for iteration, triggers when the loop exhausts (looped through everything without break)
+
+Graph DFS
+------------------
+All nodes in stack are not visited yet:
+```
+stack = [root]
+while stack:
+    node = stack.pop()
+    visited.add(node)
+    # do something
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            stack.append(neighbor)
+```
+
+All nodes in stack are already visited:
+```
+visited.add(root)
+stack = [root]
+while stack:
+    node = stack.pop()
+    # do something
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            stack.append(neighbor)
+```
+
+number string to char list
+------------------
+nums = list(str(nums_str))
