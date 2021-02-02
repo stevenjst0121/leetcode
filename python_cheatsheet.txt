@@ -133,3 +133,22 @@ while stack:
 number string to char list
 ------------------
 nums = list(str(nums_str))
+
+Easiest way to write binrary search
+------------------
+Two pointers
+
+```
+low, high = 0, len(nums) - 1
+while low < high: # Always this condition
+    mid = low + (high - low) // 2
+
+    # Depends how you want the result to be, for examle in 528 pick random with weight,
+    # we want to find the index of accumulative sums whosse value is LEAST LARGER than the generated random number
+    # that transaltes to if the value is smaller than genrated num, result must be on the right (exclusive mid)
+    # but if value is larger or equal to generated num, result must be on the left (include mid)
+    if nums[mid] < target:
+        low = mid + 1
+    else:
+        high = mid
+```

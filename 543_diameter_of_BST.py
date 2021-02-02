@@ -12,6 +12,9 @@ class TreeNode:
 
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        """
+        [MEMO] Get depth while calculating max diameter_
+        """
         self.max_diameter = 0
         self.getDepth(root)
         return self.max_diameter
