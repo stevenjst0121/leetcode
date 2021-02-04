@@ -9,6 +9,7 @@ class Solution:
         """
         [MEMO] If there is order requirement like top to bottom && left to right
         Always use BFS
+        [Tip] Can always sort the keys and then output
         """
         if not root:
             return []

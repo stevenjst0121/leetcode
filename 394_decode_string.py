@@ -4,7 +4,7 @@ from collections import deque
 class Solution:
     def decodeString(self, s: str) -> str:
         """Draft 1
-        [MEMO] Use single stack
+        [MEMO+1] Use single stack
         Was stuck at stack solution first because was thinking of storing only [ and ], but can actually store all
         """
         # Assume s must be in form of #[.*]
@@ -18,7 +18,7 @@ class Solution:
                 subs = ""
                 while stack[-1] != "[":
                     subs = stack.pop() + subs
-                stack.pop()
+                stack.pop()  # pop out "["
                 k = 0
                 multi = 1
                 while stack and stack[-1].isdigit():

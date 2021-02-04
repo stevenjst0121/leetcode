@@ -151,4 +151,6 @@ while low < high: # Always this condition
         low = mid + 1
     else:
         high = mid
+    
+    return low # now low must be >= high
 ```
