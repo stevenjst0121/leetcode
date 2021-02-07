@@ -31,7 +31,8 @@ class Solution:
                 if len(word_2) < len(word_1):
                     return ""
 
-        # Step 2: We need to repeatedly pick off nodes with an indegree of 0.
+        # Step 2: Topological Sort
+        # We need to repeatedly pick off nodes with an indegree of 0.
         # [MEMO] The way to use queue for traverse reverse graph
         output = []
         queue = deque([char for char in in_degree if in_degree[char] == 0])
