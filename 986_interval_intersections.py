@@ -7,7 +7,7 @@ class Solution:
 
     def intervalIntersection(self, A: List[List[int]], B: List[List[int]]) -> List[List[int]]:
         """Solution 1
-        [MEMO+1] Can simply drop the smaller interval, and use two pointers for iteration
+        [MEMO] Can simply drop the smaller interval, and use two pointers for iteration
         """
         result = []
         i, j = 0, 0

@@ -7,7 +7,7 @@ class Solution(object):
 
     def reorganizeString(self, S):
         """Solution 1
-        [MEMO] Brilliant solution using sort
+        Brilliant solution using sort
         """
         N = len(S)
         A = []
@@ -23,7 +23,7 @@ class Solution(object):
 
     def reorganizeString(self, S):
         """Solution 2
-        [MEMO+1] Smart way of using heap to pop top 2 items off
+        [MEMO] Smart way of using heap to pop top 2 items off
         """
         N = len(S)
         chars = defaultdict(int)

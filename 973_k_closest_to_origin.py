@@ -7,7 +7,7 @@ class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         """Max Heap
         Better solution from discussion
-        [MEMO] No need to define class with __lt__, just store (key, value) into heap
+        No need to define class with __lt__, just store (key, value) into heap
         """
         heap = []
         for point in points:
