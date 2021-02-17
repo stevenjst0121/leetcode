@@ -6,7 +6,7 @@ import random
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         """
-        [MEMO] Remember what is binary heap and how to use heapq
+        Remember what is binary heap and how to use heapq
         """
         queue = []
         for num in nums:

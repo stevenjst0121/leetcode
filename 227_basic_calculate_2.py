@@ -4,7 +4,7 @@ from collections import deque
 class Solution:
     def calculate(self, s: str) -> int:
         """Solution 1
-        [MEMO] Brilliant solution using stack
+        [MEMO+1] Brilliant solution using stack
         """
         if not s:
             return 0
