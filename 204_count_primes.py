@@ -6,6 +6,9 @@ from collections import *
 
 class Solution:
     def countPrimes(self, n: int) -> int:
+        """
+        [MEMO+1]
+        """
         if n < 2:
             return 0
 
@@ -33,7 +36,6 @@ class Solution:
 
     # def countPrimes(self, n: int) -> int:
     #     """
-    #     MEMO
     #     ??? Do better
     #     """
     #     if n <= 2:

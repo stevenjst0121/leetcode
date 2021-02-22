@@ -4,7 +4,7 @@ from collections import defaultdict, deque
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        """[MEMO] Topological search
+        """Topological search
         This implementation I found most straight-forward
         Can also define a Node object with a variable that tracks the degree of the node (See solution)
         """
