@@ -30,7 +30,7 @@ def generate_list(list: List) -> ListNode:
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         """
-        MEMO: Traverse tree in reverse order and store result in reverse order
+        Traverse tree in reverse order and store result in reverse order
         """
         if not root:
             return []

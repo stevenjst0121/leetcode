@@ -61,9 +61,6 @@ class Solution:
         return (head_1, head_2)
 
     def merge(self, head_1: ListNode, head_2: ListNode) -> ListNode:
-        """
-        MEMO
-        """
         dummyHead = ListNode()
         curr = dummyHead
 
