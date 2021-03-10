@@ -36,7 +36,7 @@ class Solution:
         # self.inorderTraversalRecursive(root, result)
         # return result
 
-        """[MEMO] Iterative"""
+        """Iterative"""
         result = []
         stack = deque()
         curr = root
@@ -51,7 +51,7 @@ class Solution:
             curr = curr.right
         return result
 
-        # """[MEMO] Morris Inorder"""
+        # """Morris Inorder"""
         # result = []
         # curr = root
         # while curr:
