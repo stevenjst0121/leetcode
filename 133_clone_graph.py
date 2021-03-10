@@ -15,7 +15,7 @@ class Solution:
 
     def cloneGraph(self, node: "Node") -> "Node":
         """
-        [MEMO] Fisrt draft, Use stack + visited to BFS traverse through a graph
+        [MEMO] Recursive solution
         """
         if not node:
             return None

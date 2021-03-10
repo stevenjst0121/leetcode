@@ -28,6 +28,30 @@ class Solution:
         return new
 
     def copyRandomList(self, head: "Node") -> "Node":
+        """
+        Iterative solution with O(N) space
+        """
+        if not head:
+            return None
+
+        added = {}
+        node = head
+        while node:
+            new_node = Node(node.val)
+            added[node] = new_node
+            node = node.next
+
+        node = head
+        while node:
+            if node.next:
+                added[node].next = added[node.next]
+            if node.random:
+                added[node].random = added[node.random]
+            node = node.next
+
+        return added[head]
+
+    def copyRandomList(self, head: "Node") -> "Node":
         """Draft 1
         Brute force to calculate index of a node, only 6%
         """
