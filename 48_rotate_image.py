@@ -4,17 +4,18 @@ from typing import List
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """Solution 3
-        [MEMO] Optimized version of draft 1 to do rotation of 4 points in single loop
+        [MEMO+1] Optimized version of draft 1 to do rotation of 4 points in single loop
         There is also solution 1 which takes mathematical approach
         """
         N = len(matrix)
-        for i in range(N // 2 + N % 2):  # BRILLIANT!!!
+        for i in range(N // 2 + N % 2):
             for j in range(N // 2):
-                tmp = matrix[N - 1 - j][i]
-                matrix[N - 1 - j][i] = matrix[N - 1 - i][N - j - 1]
-                matrix[N - 1 - i][N - j - 1] = matrix[j][N - 1 - i]
-                matrix[j][N - 1 - i] = matrix[i][j]
-                matrix[i][j] = tmp
+                tmp = matrix[i][j]
+                matrix[i][j] = matrix[N - j - 1][i]
+                matrix[N - j - 1][i] = matrix[N - i - 1][N - j - 1]
+                matrix[N - i - 1][N - j - 1] = matrix[j][N - i - 1]
+                matrix[j][N - i - 1] = tmp
+        return matrix
 
     def rotate(self, matrix: List[List[int]]) -> None:
         """Draft 1

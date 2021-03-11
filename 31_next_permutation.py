@@ -6,8 +6,8 @@ from collections import *
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
         """Solution
-        [MEMO] From right, find first a[i] < a[i + 1], i is the place to change
-        [MEMO] Also the fact that replacing the smallest item from right, the right part is already sorted in desc, just reverse
+        [MEMO+1] From right, find first a[i] < a[i + 1], i is the place to change
+        Also the fact that replacing the smallest item from right, the right part is already sorted in desc, just reverse
         """
         i = len(nums) - 2
         while i >= 0 and nums[i] >= nums[i + 1]:
