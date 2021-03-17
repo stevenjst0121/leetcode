@@ -6,7 +6,7 @@ from collections import *
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         """
-        Keep a map of sums, where sums[num] = the number of times sum (calculated from index 0) has occured
+        [MEMO] Keep a map of sums, where sums[num] = the number of times sum (calculated from index 0) has occured
         Iterate through nums and keep tracking of current sum since index 0
         Use the iterator as the END of a possible subarray, find how many times sums[sum - k] has occurred
             (sum - k) + k = sum, where k is the subarray we are looking for
