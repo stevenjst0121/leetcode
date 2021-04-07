@@ -154,3 +154,11 @@ while low < high: # Always this condition
     
     return low # now low must be >= high
 ```
+
+Convert ASCII chars back and forth
+------------------
+>>> ord("h")
+104
+
+>>> chr(104)
+'h'

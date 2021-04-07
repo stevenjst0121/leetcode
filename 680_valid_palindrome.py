@@ -1,28 +1,21 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        if not s:
-            return True
+        """Two pointer
+        O(N)
+        """
+        return self.helper(s, True)
 
-        start, end = 0, len(s) - 1
-        while start < end:
-            if s[start] == s[end]:
-                start += 1
-                end -= 1
-            else:
-                # Remove start or remove end
-                return self.isPalindrome(s, start + 1, end) or self.isPalindrome(s, start, end - 1)
+    def helper(self, s: str, can_delete: bool) -> bool:
+        i, j = 0, len(s) - 1
+        while i < j:
+            if s[i] != s[j]:
+                if not can_delete:
+                    return False
+                else:
+                    res_i = self.helper(s[i + 1 : j + 1], False)
+                    res_j = self.helper(s[i:j], False)
+                    return res_i or res_j
 
-        return True
-
-    def isPalindrome(self, s: str, start: int, end: int) -> bool:
-        if start > end:
-            return True
-
-        while start < end:
-            if s[start] != s[end]:
-                return False
-
-            start += 1
-            end -= 1
-
+            i += 1
+            j -= 1
         return True
