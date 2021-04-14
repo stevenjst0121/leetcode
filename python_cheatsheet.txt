@@ -147,12 +147,16 @@ while low < high: # Always this condition
     # we want to find the index of accumulative sums whosse value is LEAST LARGER than the generated random number
     # that transaltes to if the value is smaller than genrated num, result must be on the right (exclusive mid)
     # but if value is larger or equal to generated num, result must be on the left (include mid)
+    # **** Since mid is floor here, low must = mid + 1
     if nums[mid] < target:
         low = mid + 1
     else:
         high = mid
     
     return low # now low must be >= high
+
+    # If you want low = mid, you can do:
+    mid = low + ceil((high - low) / 2)
 ```
 
 Convert ASCII chars back and forth

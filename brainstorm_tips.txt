@@ -15,6 +15,8 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 
 * When see a problem that limits to the scope of 26 characters or similar, think of using an array[26]
 
+* BFS or DFS does not always have to work on trees, can work on other problems like word ladder or knight minimum moves.
+
 * When need to use a queue/stack, it's always follows
     1. Initialize the queue/stack with some variables
     2. while queue/stack:
