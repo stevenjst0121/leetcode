@@ -26,6 +26,12 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
     4. Add more items to queue/stack as needed for next iteration
 (For graph traversal, use queue for BFS, use stack for DFS)
 
+* Whenever you see a question that asks for the maximum or minimum of something, consider Dynamic Programming as a possibility
+    - Top-down: Recursion + memoization, store resolved subproblems somwhere to avoid duplication
+    - Bottom-up: Solve all subproblems first and get the needed answer from store
+        (Sometimes in order to build from smallest, need to loop range(N - 1, -1, -1))
+    - There is even bi-directional DP, where you construct such an array from both sides.
+
 
 
 
