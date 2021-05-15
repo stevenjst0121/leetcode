@@ -1,0 +1,9 @@
+1. [Talk] Ask clarification questions
+
+2. [Talk] Re-state the question to make sure I understand
+
+3. [Think] Get through the question and see the root problem underneath
+
+4. [Talk] Talk about possible solutions (dumb to advanced)
+
+5. [Write] Write the code

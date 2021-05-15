@@ -1,0 +1,66 @@
+map
+---------
+Use unordered_map for a regular hash map
+Use map for ordered map
+
+Heap
+---------
+std::is_heap
+std::make_heap
+std::push_heap // does not actually push, need to do vector::push_back() first
+std::pop_heap // does not actually pop, need to call vector::pop_back()
+
+```
+class Solution {
+public:
+    vector<vector<int>> highFive(vector<vector<int>>& items) {
+        map<int, vector<int>> topScores;
+        for (const auto& item : items) {
+            int id = item[0];
+            int score = item[1];
+            auto& id_scores = topScores[id];
+            if (!is_heap(id_scores.begin(), id_scores.end())) {
+                make_heap(id_scores.begin(), id_scores.end(), greater<int>{});
+            }
+            id_scores.push_back(score);
+            push_heap(id_scores.begin(), id_scores.end(), greater<int>{});
+            if (id_scores.size() > 5) {
+                pop_heap(id_scores.begin(), id_scores.end(), greater<int>{});
+                id_scores.pop_back();
+            }
+        }
+
+        vector<vector<int>> result;
+        for (const auto& topScore : topScores) {
+            const auto& scores = topScore.second;
+            int average = accumulate(scores.cbegin(), scores.cend(), 0.0) / scores.size();
+            result.emplace_back(vector<int>{topScore.first, average});
+        }
+        return result;
+    }
+};
+```
+
+tuple
+---------
+std::tuple<int, string, char> t;
+t = std::make_tuple(1, "abc", 'x');
+int a = std::get<0>(t);
+string s = std::get<1>(t);
+
+
+algorithms
+---------
+std::max() // only take two items
+std::max_element() // takes iterators, returns iterator to the result
+
+
+size_t
+---------
+size_t is unsigned, for if use it in some loop, be careful that it will never be smaller than 0
+```
+for (size_t i = 10; i != (size_t) - 1; --i) {
+    // do something
+}
+```
+
