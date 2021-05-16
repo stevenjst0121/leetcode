@@ -1,3 +1,12 @@
+string
+---------
+size_t index = string.find(".", pos);
+if (index == string::npos) {
+    ...
+}
+
+string sub = string.substr(pos, length); // second param is length!
+
 map
 ---------
 Use unordered_map for a regular hash map
