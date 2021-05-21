@@ -9,7 +9,7 @@
 class Solution:
     def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
         """
-        Draft 1, same as solution 1, O(N), 70%
+        [MEMO] Draft 1, same as solution 1, O(N), 70%
         """
         self.lca = None
         self.dfs(root, p, q)
