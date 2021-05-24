@@ -6,10 +6,17 @@
 #         self.right = None
 
 
+# [MEMO] All three solutions
+# 1. DFS recursion
+# 2. Iterative with parent
+# 3. *** Iterative without parent
+# 4. For a BST, it's even easier with BST properties (problem 235)
+
+
 class Solution:
     def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
         """
-        [MEMO] Draft 1, same as solution 1, O(N), 70%
+        Draft 1, same as solution 1, O(N), 70%
         """
         self.lca = None
         self.dfs(root, p, q)

@@ -43,5 +43,7 @@ Algorithms
 * Bit manipulation
 
 * DFS
+    - store some information and return as useful info for the problem, such as height/depth
 
 * BFS
+    - Normal tree only can BFS childs. But can DFS a tree first to mark parents, and then can do BFS on childs and parents at the same time

@@ -38,17 +38,16 @@ class Solution:
 
         """Iterative"""
         result = []
-        stack = deque()
+        stack = []
         curr = root
-        while curr or stack:
+        while stack or curr:
             if curr:
                 stack.append(curr)
                 curr = curr.left
-                continue
-
-            curr = stack.pop()
-            result.append(curr.val)
-            curr = curr.right
+            else:
+                curr = stack.pop()
+                result.append(curr.val)
+                curr = curr.right
         return result
 
         # """Morris Inorder"""

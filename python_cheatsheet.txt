@@ -50,7 +50,8 @@ Use tuple() as key to simply store multiple values as key in a dictionary
 
 list
 ------------------
-sort() # sort the items in place
+sort(key=lambda x : x) # sort the items in place
+index(val) # Find index of first val
 
 
 ********IMPORTANT*********
