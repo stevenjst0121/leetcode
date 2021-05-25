@@ -47,3 +47,16 @@ Algorithms
 
 * BFS
     - Normal tree only can BFS childs. But can DFS a tree first to mark parents, and then can do BFS on childs and parents at the same time
+
+* Disjoint Set / Union Find
+The idea is to partition given relationships (connections), such as find connected components of a Graph
+    - Use a tree to store representatives of each group (each group start with using itself as representative)
+    - [Optional] Can keep track of group information at the same time, such as group size or group members
+    - Define `find` and `union` functions:
+        - find
+            - Given a node, find the representative (recursive calls to find itself)
+        - union
+            - Given two nodes, find their representatives repespectively
+            - If they have same representative, they are already grouped
+            - If not, choose one group and merge into the other (if group size is available, merge the smaller one into bigger one)
+    
