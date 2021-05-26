@@ -26,7 +26,7 @@ class Solution:
         nums[i + 1 :] = reversed(nums[i + 1 :])
 
     def nextPermutation(self, nums: List[int]) -> None:
-        """"""
+        """ """
         if not self.nextPermutationHelper(nums, len(nums) - 2):
             nums.sort()
 

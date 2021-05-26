@@ -60,3 +60,6 @@ The idea is to partition given relationships (connections), such as find connect
             - If they have same representative, they are already grouped
             - If not, choose one group and merge into the other (if group size is available, merge the smaller one into bigger one)
     
+* Divide and Conquer
+    - Binary Search
+    - Merge k sorted lists
