@@ -63,3 +63,6 @@ The idea is to partition given relationships (connections), such as find connect
 * Divide and Conquer
     - Binary Search
     - Merge k sorted lists
+
+* Backtracking
+    - Backtracking is an algorithm for finding all solutions by exploring all potential candidates.

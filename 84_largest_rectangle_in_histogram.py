@@ -25,6 +25,23 @@ class Solution:
         return max_area
 
     def largestRectangleArea(self, heights: List[int]) -> int:
+        """Divide and Conquer
+        O(NLogN), but exceeds time limit for a flat heights O(N^2)
+        """
+        if not heights:
+            return 0
+
+        min_index = 0
+        for i in range(len(heights)):
+            if heights[i] < heights[min_index]:
+                min_index = i
+        return max(
+            heights[min_index] * len(heights),
+            self.largestRectangleArea(heights[:min_index]),
+            self.largestRectangleArea(heights[min_index + 1 :]),
+        )
+
+    def largestRectangleArea(self, heights: List[int]) -> int:
         """Draft 1
         Bottom-up dp, works but exceeds time limit
         O(N^2)
