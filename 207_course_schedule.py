@@ -4,8 +4,40 @@ from collections import defaultdict, deque
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        """DFS Solution
+        [MEMO] Mark different type visited:
+        1 - In traverse
+        2 - Done traverse (node has no child or all children are visited)
+        """
+        graph = defaultdict(set)  # course to list of its prereqs
+        for pr in prerequisites:
+            graph[pr[1]].add(pr[0])
+
+        # 1 - in traverse
+        # 2 - done traverse (no child or all children are visited)
+        visited = {}
+        for course in range(numCourses):
+            if self.hasCycle(course, graph, visited):
+                return False
+        return True
+
+    def hasCycle(self, course, graph, visited):
+        if course in visited:
+            if visited[course] == 1:
+                return True
+            elif visited[course] == 2:
+                return False
+
+        visited[course] = 1
+        for neighbor in graph[course]:
+            if self.hasCycle(neighbor, graph, visited):
+                return True
+
+        visited[course] = 2
+
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         """Topological search
-        This implementation I found most straight-forward
+        [MEMO] This implementation I found most straight-forward
         Can also define a Node object with a variable that tracks the degree of the node (See solution)
         """
         graph = defaultdict(set)
@@ -25,37 +57,3 @@ class Solution:
         if not all([degree == 0 for degree in degrees]):
             return False
         return True
-
-    # def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-    #     graph = defaultdict(set)
-    #     for first, second in prerequisites:
-    #         graph[first].add(second)
-
-    #     visited = set()
-    #     checked = set()
-    #     for curr in range(numCourses):
-    #         if self.isCyclic(curr, graph, visited, checked):
-    #             return False
-    #     return True
-
-    def isCyclic(self, curr, graph, visited, checked) -> bool:
-        # [MEMO] The way to check if there is loop in graph (keep visited and erase after done for current node)
-        # [MEMO] Can be improved with memoization since node can be visited multiple times
-        if curr in visited:
-            return True
-
-        if curr in checked:
-            return False
-
-        visited.add(curr)
-
-        ret = False
-        for child in graph[curr]:
-            ret = self.isCyclic(child, graph, visited, checked)
-            if ret:
-                break
-
-        visited.remove(curr)
-        if not ret:
-            checked.add(curr)
-        return ret

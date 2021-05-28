@@ -18,7 +18,7 @@ class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         return self.helper(nums, 0, len(nums) - 1, len(nums) - k + 1)
 
-    def helper(self, nums: List[int], low: int, high: int, ks: int) -> int:
+    def quickSelect(self, nums, low, high, ks):
         """Quick Select
         [MEMO] Quick select Algo, very similar to quick sort, but it searches kth smallest in O(N), worst O(N^2)
         Basically you do divide and conquer but only recursively work on one side once partition is done
@@ -40,6 +40,6 @@ class Solution:
         if i == ks - 1:
             return nums[i]
         elif i > ks - 1:
-            return self.helper(nums, low, i - 1, ks)
+            return self.quickSelect(nums, low, i - 1, ks)
         else:
-            return self.helper(nums, i + 1, high, ks)
+            return self.quickSelect(nums, i + 1, high, ks)

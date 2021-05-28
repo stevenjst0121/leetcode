@@ -6,35 +6,29 @@ class Solution:
         """Solution 1
         [MEMO+1] Brilliant solution using stack
         """
-        if not s:
-            return 0
-
-        stack = deque()
-        current_num = 0
-        operation = "+"
+        stack = []
+        prev_op = "+"
+        num = 0
         for i, c in enumerate(s):
             if c.isdigit():
-                current_num = current_num * 10 + int(c)
+                num = num * 10 + int(c)
 
             if not c.isdigit() and c != " " or i == len(s) - 1:
-                if operation == "-":
-                    stack.append(-1 * current_num)
-                elif operation == "+":
-                    stack.append(current_num)
-                elif operation == "*":
-                    num = stack.pop()
-                    stack.append(num * current_num)
-                elif operation == "/":
-                    num = stack.pop()
-                    stack.append(int(num / current_num))
-
-                operation = c
-                current_num = 0
-
-        result = 0
-        while stack:
-            result += stack.pop()
-        return result
+                if prev_op == "+":
+                    stack.append(num)
+                elif prev_op == "-":
+                    stack.append(-1 * num)
+                elif prev_op == "*":
+                    prev = stack.pop()
+                    num = prev * num
+                    stack.append(num)
+                elif prev_op == "/":
+                    prev = stack.pop()
+                    num = prev // num
+                    stack.append(num)
+                num = 0
+                prev_op = c
+        return sum(stack)
 
     def calculate(self, s: str) -> int:
         """Solution 2
