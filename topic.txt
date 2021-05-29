@@ -24,6 +24,12 @@ Data Structures
 * Graph
     - Directional vs. un-directional
     - Trie
+    - Understand Cycle!
+        - In a directed graph, cycle could mean:
+            1. There is a loop, image each edge represents dependency, e.g. a -> b -> c -> a. In this case, checking cycle needs to do DFS + visited with visit status (0 - in traverse, 1 - done traverse)
+            2. Multiple dependencies, image a -> b -> d, and also a -> c -> d. In this case, checking cycle only need a simple visited set.
+        - In an undirected graph, cycle check just need simple visited.
+
 
 Algorithms
 ============
@@ -68,6 +74,13 @@ The idea is to partition given relationships (connections), such as find connect
 
 * Backtracking
     - Backtracking is an algorithm for finding all solutions by exploring all potential candidates.
+
+* Greedy
+    - Greedy means try a local optimal solution first
+    - The local solution above doesn't necessarily mean it is the optimal solution, so the greedy function needs to be able to tell if it is optimal, e.g. a return value True/False.
+    - When we try greedy and we found a solution, we can stop trying. There is no need to compare with current maximum.
+    
+    - Greedy can be used with backtracking, see problem 322 Reconstruct Itinerary
 
 * Quick Select
     - Find kth smallest element

@@ -703,6 +703,142 @@ if not c.isdigit() and c != " " or i == len(s) - 1:
 
 </details>
 
+#### 261. Graph Valid Tree
+<details>
+<summary>See Memo</summary>
+
+**Solution 1**
+* A graph is a tree if
+	* There is no cycle
+	* All nodes are connected
+
+**Solution 2**
+* A graph is a tree if
+	* There are n - 1 edges
+	* And all nodes are connecected
+	* Above two implicits there is no cycle
+
+</details>
+
+#### 269. Alien Dictionary
+<details>
+<summary>See Memo</summary>
+
+* Initialize degrees, have to do O(N^2) loop: `degrees = Counter{c: 0 for word in words for c in word}`
+* Form graph and update degrees. Be care when two words have exact same front part, but first word is longer than second word.
+* Topological sort to find possible result
+* Result is only valid if it contains all the letters
+
+</details>
+
+#### 297. Serialize and Deserialize Binary Tree
+<details>
+<summary>See Memo</summary>
+
+* Follow DFS traverse (root, left and right)
+
+</details>
+
+#### 311. Sparse Matrix Multiplication
+<details>
+<summary>See Memo</summary>
+
+* For matrix 1, store non-zero positions by row da[m] = list(k)
+* For matrix 2, store non-zero positions by col, db[n] = list[k]
+
+</details>
+
+#### 314. Binary Tree Vertical Order Traversal
+<details>
+<summary>See Memo</summary>
+
+* BFS, put (row, col, node) into queue for traversal
+* Store values of BFS by col in dict
+* When output, traverse by `sorted(d.keys())`
+
+</details>
+
+#### 322. Coin Change
+<details>
+<summary>See Memo</summary>
+
+* Simple backtracking is basically brute force, will time out (maybe adding greedy would help?)
+* Bottom-up dp on each amount level.
+* Trick: in python, Int + 1 is still Inf
+* coins sequence does not matter, simply because using which coin first for a coin change doesn't matter
+```python
+def coinChange(self, coins: List[int], amount: int) -> int:
+	counts = [float("Inf")] * (amount + 1)
+	counts[0] = 0
+	for coin in coins:
+		for x in range(coin, amount + 1):
+			counts[x] = min(counts[x], counts[x - coin] + 1)
+	return counts[-1] if counts[-1] != float("Inf") else -1
+```
+
+</details>
+
+#### 323. Number of Connected Components in an Undirected Graph
+<details>
+<summary>See Memo</summary>
+
+* Define a dictionary for representative mapping (starting with using self as representative)
+* [Option] Define size or other useful information
+* Define `find` that is used to recursively find the current representative of a node
+* Define `union` that combine two nodes into the same group
+	* Check if their reps are the same
+	* If yes, they are already in the same group
+	* If not, merge them (set one rep to the other rep's rep)
+* Start total number of components with n and call `union` on all edges, upon successful union, decrement component count
+
+</details>
+
+#### 332. Reconstruct Itinerary
+<details>
+<summary>See Memo</summary>
+
+* Backtrack + Greedy
+* Need some way to indicate if a ticket has been used, use defaultdict(list[[destination, True/False]])
+* Backtrack needs to return True/False to indicate if the local optimal solution has reached a global optimal solutio`n
+
+</details>
+
+#### 341. Flatten Nested List Iterator
+<details>
+<summary>See Memo</summary>
+
+* Basic idea is to use a stack for getting the next element
+* Trick: Use reversed() function in order to use a normal stack
+
+</details>
+
+#### 394. Decode String
+<details>
+<summary>See Memo</summary>
+
+* Use stack to store everything
+* When sees "]", trace back to find substring till "["
+
+</details>
+
+#### 399. Evaluate Division
+<details>
+<summary>See Memo</summary>
+
+* Build graph a -> b and b -> a, result is basically path from a -> c
+* Define dfs that returns value of node -> target, recursive call
+
+</details>
+
+#### 442. Find All Duplicates in an Array
+<details>
+<summary>See Memo</summary>
+
+* Iterate and mark num index as negative
+* Output result when see an num index is already marked negative
+
+</details>
+
 #### Template
 <details>
 <summary>See Memo</summary>

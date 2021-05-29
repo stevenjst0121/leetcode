@@ -11,40 +11,33 @@ class Solution:
         [MEMO] Trick here is to use defaultdict(dict) for graph to mark value of a -> b
         [????] Disjoint set solution
         """
-        self.graph = defaultdict(dict)
-        for i in range(len(equations)):
-            a_i, b_i = equations[i][0], equations[i][1]
-            v_i = values[i]
-            self.graph[a_i][b_i] = v_i
-            self.graph[b_i][a_i] = 1 / v_i
+        graph = defaultdict(dict)
+        for equation, value in zip(equations, values):
+            graph[equation[0]][equation[1]] = value
+            graph[equation[1]][equation[0]] = 1 / value
 
-        result = []
-        for c_j, d_j in queries:
-            result.append(self.execute(c_j, d_j))
-        return result
+        results = []
+        for query in queries:
+            visited = set([query[0]])
+            result = self.runquery(graph, query[0], query[1], visited)
+            results.append(result)
+        return results
 
-    def execute(self, c_j, d_j):
-        seen = set([c_j])
-        return self.dfs(c_j, d_j, 1, seen)
-
-    def dfs(self, c_j, d_j, product, seen):
-        if c_j not in self.graph:
+    def runquery(self, graph, node, target, visited):
+        # Returns value of node / target
+        if node not in graph:
             return -1
 
-        if c_j == d_j:
+        if node == target:
             return 1
 
-        for nei, v_j in self.graph[c_j].items():
-            if nei in seen:
-                continue
+        if target in graph[node]:
+            return graph[node][target]
 
-            if nei == d_j:
-                return product * v_j
-
-            seen.add(nei)
-            res = self.dfs(nei, d_j, product * v_j, seen)
-            if res > 0:
-                return res
-            seen.remove(nei)
-
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                ret = self.runquery(graph, neighbor, target, visited)
+                if ret > 0:
+                    return graph[node][neighbor] * ret
         return -1
