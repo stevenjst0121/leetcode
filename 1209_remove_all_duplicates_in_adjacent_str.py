@@ -1,9 +1,30 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
+        stack = []
+        counts = []
+        for c in s:
+            if not stack or c != stack[-1]:
+                counts.append(1)
+                stack.append(c)
+                continue
+
+            # c == stack[-1]
+            if counts[-1] == k - 1:
+                counts.pop()
+                for _ in range(k - 1):
+                    stack.pop()
+            else:
+                counts[-1] += 1
+                stack.append(c)
+        return "".join(stack)
+
+    def removeDuplicates(self, s: str, k: int) -> str:
         """Solution using stack to keep track of count
         [MEMO] This will avoid recursion but keep removing substrings until done
         Since string length will be changed during iteration, make sure to use
         while i < len(s)
+
+        See above solution for a more intuitive design with the help of a stack
         """
         counts = []
         i = 0

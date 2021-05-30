@@ -7,7 +7,9 @@ Data Structures
 * Linked List
 
 * Stack
-    - The nature of the stack is that bottom items will never be touched until the top one is poped out. If needed, you can store some "so far" value along with the value in the stack, for example: "minimum value so far in the stack".
+    - The nature of the stack is that bottom items will never be touched until the top one is poped out. If needed, you can store some "so far" value along with the value in the stack.
+        - For example: "minimum value so far in the stack".
+        - For example: "count of last repeated num in the stack".
 
 * Queue
 

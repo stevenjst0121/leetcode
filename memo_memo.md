@@ -1068,6 +1068,52 @@ if lo <= hi:
 
 </details>
 
+#### 1153. String Transforms Into Another String
+<details>
+<summary>See Memo</summary>
+
+* Realize the fact that each char only allow to be changed to another char
+* Simply use a dictionary to mark such link and return False if one char needs to be converted to multiple chars
+
+</details>
+
+#### 1197. Minimum Knight Moves
+<details>
+<summary>See Memo</summary>
+
+* Bi-directional BFS search
+* Trick: Keep track of steps used (either directly in outer loop when calling bfs, or store steps in visited as a map)
+
+</details>
+
+#### 1209. Remove All Adjacent Duplicates in String II
+<details>
+<summary>See Memo</summary>
+
+* Trick is similar to Min Stack, where you store some "so far" value along with the value in/side-by-side with stack
+* Here we store counts of adjacent occurances of the last num in stack
+
+</details>
+
+#### 1249. Minimum Remove to Make Valid Parentheses
+<details>
+<summary>See Memo</summary>
+
+* Basic idea is to traverse and add all invalid ")"s to to_remove set
+* And then remove invalid "("s as well
+* Trick: A brilliant solution is to keep track of opens = [], and pop from it if a valid ")" is found after. And the end, union to_remove and opens left
+
+</details>
+
+#### 1593. Split a String Into the Max Number of Unique Substrings
+<details>
+<summary>See Memo</summary>
+
+* Cannot use DP as one bigger problem does not depends directly on its subproblems
+* Use backtrack
+
+</details>
+
 #### Template
 <details>
 <summary>See Memo</summary>
