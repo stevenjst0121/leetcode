@@ -5,7 +5,7 @@ from collections import deque
 class Solution:
     def isBipartite(self, graph):
         """Solution
-        [MEMO+1] Use coloring to tag each node, this is faster because it avoids search upon validation
+        [MEMO] Use coloring to tag each node, this is faster because it avoids search upon validation
         """
         color = {}
         for node in range(len(graph)):

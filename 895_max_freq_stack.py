@@ -1,8 +1,11 @@
+from collections import defaultdict
+
+
 class FreqStack:
     def __init__(self):
-        self.freq = collections.Counter()
-        self.group = collections.defaultdict(list)
-        self.maxfreq = 0
+        self.freq = defaultdict(int)
+        self.group = defaultdict(list)
+        self.max_freq = 0
 
     def push(self, val: int) -> None:
         """Solution 1
@@ -12,18 +15,15 @@ class FreqStack:
                 {1: [5, 7, 4], 2: [5, 7], 3: [5]}
             * Keep track of max freq so there is no need to find it in pop()
         """
-        f = self.freq[val] + 1
-        self.freq[val] = f
-        if f > self.maxfreq:
-            self.maxfreq = f
-        self.group[f].append(val)
+        self.freq[val] += 1
+        self.group[self.freq[val]].append(val)
+        self.max_freq = max(self.max_freq, self.freq[val])
 
     def pop(self) -> int:
-        val = self.group[self.maxfreq].pop()
+        val = self.group[self.max_freq].pop()
         self.freq[val] -= 1
-        if not self.group[self.maxfreq]:
-            self.maxfreq -= 1
-
+        if not self.group[self.max_freq]:
+            self.max_freq -= 1
         return val
 
     # def __init__(self):

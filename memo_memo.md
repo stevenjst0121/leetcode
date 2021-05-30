@@ -839,6 +839,235 @@ def coinChange(self, coins: List[int], amount: int) -> int:
 
 </details>
 
+#### 523. Continuous Subarray Sum
+<details>
+<summary>See Memo</summary>
+
+* Use dict to record the earlises location of mod = sum % k
+* While traversing, calculate mod and see if the previous mod location is less than i - 1
+* Trick: add sums[0] = -1
+
+</details>
+
+#### 528. Random Pick with Weight
+<details>
+<summary>See Memo</summary>
+
+* Accumulative sum
+* `random.random()` gets random number in [0.0, 1.0)
+* Easiest way to write binary search
+```python
+def pickIndex(self) -> int:
+	target = self.total * random.random()
+	# run a binary search to find the target zone
+	"""[MEMO+1] Easiest way to write binary search without recursion"""
+	low, high = 0, len(self.w_accumulate) - 1
+	while low < high:
+		mid = (low + high) // 2
+		if target > self.w_accumulate[mid]:
+			low = mid + 1
+		else:
+			high = mid
+	return low
+```
+</details>
+
+#### 532. K-diff Pairs in an Array
+<details>
+<summary>See Memo</summary>
+
+**set**
+* Track seen nums in set and store result in set (O(1) to check duplicates)
+
+**counter**
+* Get counter of all numbers
+* Loop through counter
+	* Make sure to handle different cases for k > 0 and k == 0
+
+</details>
+
+#### 543. Diameter of Binary Tree
+<details>
+<summary>See Memo</summary>
+
+* Define DFS to return height of tree
+* Calculate diameter and update max_diameter while dfs
+
+</details>
+
+#### 560. Subarray Sum Equals K
+<details>
+<summary>See Memo</summary>
+
+* Use accumulative sum
+* Trick, accu_sum[0] = 1 # empty
+
+</details>
+
+#### 670. Maximum Swap
+<details>
+<summary>See Memo</summary>
+
+* Get last index for each num, loop through and find the most signifant index that can get a swap for a larger number
+* Trick: use `list(str(num))`
+* Trick: `last = {int(n): i for i, n in enumerate(nums)}`
+
+</details>
+
+#### 718. Maximum Length of Repeated Subarray
+<details>
+<summary>See Memo</summary>
+
+* Use DP, where dp[i][j] represents the longest subarray starting from i in nums1 and j in nums2
+* Trick: both dp size + 1
+```python
+def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+	dp = [[0] * (len(nums2) + 1) for _ in range(len(nums1) + 1)]
+	for i in range(len(nums1) - 1, -1, -1):
+		for j in range(len(nums2) - 1, -1, -1):
+			if nums1[i] == nums2[j]:
+				dp[i][j] = dp[i + 1][j + 1] + 1
+	return max([max(length) for length in dp])
+```
+
+</details>
+
+#### 721. Accounts Merge
+<details>
+<summary>See Memo</summary>
+
+* Form undirected graph on emails based on input account (can just link all emails to the first email in account)
+* Form a map that maps an email to the account name, for output
+* Traverse through the graph and find all emails that are linked together and add to output
+
+</details>
+
+#### 740. Delete and Earn
+<details>
+<summary>See Memo</summary>
+
+* Can probably do backtrack, but will cost a lot of time complexity
+* Realize two facts:
+	1. If you choose to delete a num, you are best just delete all of this num. This should make you think of using a Counter
+	2. When you are given a num, you only have two choices - delete or keep. If we sort all nums in counter and start from the smallest, we need to keep track of two local results - delete or keep. Then we can build DP on top of this. (Similar to 152. Maximum Product Subarray)
+* DP + sorted(Counter)
+```python
+def deleteAndEarn(self, nums: List[int]) -> int:
+	count = Counter(nums)
+	prev = None
+	avoid, using = 0, 0
+	for k in sorted(count):
+		new_avoid = max(avoid, using)
+		if k - 1 == prev:
+			new_using = k * count[k] + avoid
+		else:
+			new_using = k * count[k] + max(avoid, using)
+		prev = k
+		avoid = new_avoid
+		using = new_using
+	return max(avoid, using)
+```
+
+</details>
+
+#### 767. Reorganize String
+<details>
+<summary>See Memo</summary>
+
+* Use max heap to pop out the two most counted char and put them together
+* Trick: The operation is not possible if a number is too many:
+	* If s has odd number characters, num > (N + 1) / 2
+	* If s has even number characters, num > N // 2
+	* So combine them, can just do (N + 1) / 2
+
+</details>
+
+#### 785. Is Graph Bipartite?
+<details>
+<summary>See Memo</summary>
+
+* Use special visited map to value, if two linked nodes have the same value then it's not bipartite
+
+</details>
+
+#### 895. Maximum Frequency Stack
+<details>
+<summary>See Memo</summary>
+
+* The problem is tricky because you need some data structure that can tell the most frequent and latest push at the same time
+* Initialize a stack per frequency, and keep track of the max frequency over time
+```python
+class FreqStack:
+    def __init__(self):
+        self.freq = defaultdict(int)
+        self.group = defaultdict(list)
+        self.max_freq = 0
+
+    def push(self, val: int) -> None:
+        self.freq[val] += 1
+        self.group[self.freq[val]].append(val)
+        self.max_freq = max(self.max_freq, self.freq[val])
+
+    def pop(self) -> int:
+        val = self.group[self.max_freq].pop()
+        self.freq[val] -= 1
+        if not self.group[self.max_freq]:
+            self.max_freq -= 1
+        return val
+```
+
+</details>
+
+#### 912. Sort an Array
+<details>
+<summary>See Memo</summary>
+
+* Quicksort
+	* Partition (use high?)
+	* quicksort left
+	* quicksort right
+
+* Mergesort
+	* Partition (calculate mid)
+	* mergesort left
+	* mergesort right
+	* merge left and right
+
+</details>
+
+#### 986. Interval List Intersections
+<details>
+<summary>See Memo</summary>
+
+* To check if two intervals have intersection:
+```python
+lo = max(firstList[i][0], secondList[j][0])
+hi = min(firstList[i][1], secondList[j][1])
+if lo <= hi:
+	result.append([lo, hi])
+```
+* Two pointer, keep the larger interval and move the smaller
+
+</details>
+
+#### 987. Vertical Order Traversal of a Binary Tree
+<details>
+<summary>See Memo</summary>
+
+* Traverse will tracking position
+* Store (row, col, val) and record map by col, can directly sort on tuple
+
+</details>
+
+#### 1048. Longest String Chain
+<details>
+<summary>See Memo</summary>
+
+* Sort words by len
+* Bottom-up dp
+
+</details>
+
 #### Template
 <details>
 <summary>See Memo</summary>

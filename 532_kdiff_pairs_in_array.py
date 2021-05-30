@@ -20,6 +20,22 @@ class Solution:
         return result
 
     def findPairs(self, nums: List[int], k: int) -> int:
+        """Draft 2
+        Use set
+        """
+        result = set()
+        seen = set()
+        for num in nums:
+            pair = num - k
+            if pair in seen and (num, pair) not in result and (pair, num) not in result:
+                result.add((num, pair))
+            pair = num + k
+            if pair in seen and (num, pair) not in result and (pair, num) not in result:
+                result.add((num, pair))
+            seen.add(num)
+        return len(result)
+
+    def findPairs(self, nums: List[int], k: int) -> int:
         """Draft 1
         Found a hacky to store found items in set:
             (num, "u") - means num + its upper num has been found
