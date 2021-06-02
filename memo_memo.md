@@ -990,6 +990,15 @@ def deleteAndEarn(self, nums: List[int]) -> int:
 
 </details>
 
+#### 843. Guess the Word
+<details>
+<summary>See Memo</summary>
+
+* Keep reducing wordlist while trying
+* DO NOT create a map up-front
+
+</details>
+
 #### 895. Maximum Frequency Stack
 <details>
 <summary>See Memo</summary>
