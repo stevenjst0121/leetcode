@@ -4,6 +4,10 @@ from typing import List
 
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        """Draft 1
+        It is clear that the problem has nature of DP, but where to start DP is tricky
+        Start DP from the largest numbers!
+        """
         all_dict = defaultdict(list)
         M = len(matrix)
         N = len(matrix[0])

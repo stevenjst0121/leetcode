@@ -739,6 +739,15 @@ if not c.isdigit() and c != " " or i == len(s) - 1:
 
 </details>
 
+#### 307. Range Sum Query - Mutable
+<details>
+<summary>See Memo</summary>
+
+* Segment Tree implementation, helps to solve range-based questions
+* Query and update are both O(LogN)
+
+</details>
+
 #### 311. Sparse Matrix Multiplication
 <details>
 <summary>See Memo</summary>
