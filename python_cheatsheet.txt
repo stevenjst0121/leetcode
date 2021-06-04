@@ -167,3 +167,10 @@ Convert ASCII chars back and forth
 
 >>> chr(104)
 'h'
+
+bisect
+------------------
+https://docs.python.org/3/library/bisect.html
+This module provides support for maintaining a list in sorted order without having to sort the list after each insertion.
+
+bisec.insort_left

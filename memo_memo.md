@@ -821,6 +821,35 @@ def coinChange(self, coins: List[int], amount: int) -> int:
 
 </details>
 
+#### 354. Russian Doll Envelopes
+<details>
+<summary>See Memo</summary>
+
+* Intuitively, backtrack can be applied, but time limit exceeded
+* But it is really "Longest Increasing Subsequence" problem
+```python
+def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
+	"""
+	dp[i] represents LIS ending in i
+	dp[i] = max(dp[j]) for each 0 <= j < i
+	"""
+	envelopes.sort(key=lambda x: (x[0], -1 * x[1]))
+
+	max_russian = 0
+	dp = [0] * len(envelopes)
+	for i in range(len(envelopes)):
+		max_j = 0
+		for j in range(i):
+			if envelopes[j][1] < envelopes[i][1]:
+				max_j = max(max_j, dp[j])
+
+		dp[i] = max_j + 1
+		max_russian = max(max_russian, dp[i])
+	return max_russian
+```
+
+</details>
+
 #### 394. Decode String
 <details>
 <summary>See Memo</summary>
