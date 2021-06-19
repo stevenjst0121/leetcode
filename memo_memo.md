@@ -847,6 +847,7 @@ def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
 		max_russian = max(max_russian, dp[i])
 	return max_russian
 ```
+* Another more intuitive way is to build another array within only unique elements in increasing order, and then find the longest common subsequence
 
 </details>
 
@@ -1103,6 +1104,41 @@ if lo <= hi:
 
 * Traverse will tracking position
 * Store (row, col, val) and record map by col, can directly sort on tuple
+
+</details>
+
+#### 1043. Longest Common Subsequence
+<details>
+<summary>See Memo</summary>
+
+```c++
+vector<vector<int>> dp;
+int n = text1.length(), m = text2.length();
+for (int i = 0; i < n; ++i) {
+	dp.emplace_back(m, 0);
+}
+
+for (int i = n - 1; i >= 0; --i) {
+	for (int j = m - 1; j >= 0; --j) {
+		if (text1[i] == text2[j]) {
+			if (i == n - 1 || j == m - 1) {
+				dp[i][j] = 1;
+			} else {
+				dp[i][j] = dp[i + 1][j + 1] + 1;
+			}
+		} else {
+			if (i != n - 1 && j != m - 1) {
+				dp[i][j] = max(dp[i][j + 1], dp[i + 1][j]);
+			} else if (i != n - 1) {
+				dp[i][j] = dp[i + 1][j];
+			} else if (j != m - 1) {
+				dp[i][j] = dp[i][j + 1];
+			}
+		}
+	}
+}
+return dp[0][0];
+```
 
 </details>
 

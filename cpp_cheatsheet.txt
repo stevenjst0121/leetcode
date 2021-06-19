@@ -5,12 +5,35 @@ if (index == string::npos) {
     ...
 }
 
+vector
+---------
+```
+string& last = v.back();
+v.pop_back();
+cout << last << endl; // BAD!!!! last is destroyed
+```
+
+**** Vector does not have find member function
+```
+find(wordList.begin(), wordList.end(), endWord) == wordList.end();
+```
+
 string sub = string.substr(pos, length); // second param is length!
 
 map
 ---------
 Use unordered_map for a regular hash map
 Use map for ordered map
+
+Hard to store class directly as map key, try store pointer to class instance as map key
+
+set
+---------
+Use unordered_set
+clear()
+insert() // return value is a pair (iterator to inserted element, bool)
+erase() // return value is pair (iterator following last removed element, number of element removed, 0 or 1)
+
 
 Heap
 ---------
@@ -50,6 +73,24 @@ public:
 };
 ```
 
+list
+---------
+push_back()
+push_front()
+...
+
+insert(it, value);
+erase(it);
+
+**** Tip, when using list to keep track of order, can store iterator of list in map
+**** Adding, removing, and moving elements in a list does NOT invalidate iterators
+
+How to get last element in list?
+```
+auto it = list.end() - 1; // This for some reason does not work on leetcode, but works with online compiler
+auto it = --list.end(); // This is ok
+```
+
 tuple
 ---------
 std::tuple<int, string, char> t;
@@ -61,7 +102,10 @@ string s = std::get<1>(t);
 algorithms
 ---------
 std::max() // only take two items
+std::max(initializer_list) // c++14, max of multiple values
 std::max_element() // takes iterators, returns iterator to the result
+
+Use stable_sort if want to keep relative order of equal elements
 
 
 size_t
@@ -72,4 +116,56 @@ for (size_t i = 10; i != (size_t) - 1; --i) {
     // do something
 }
 ```
+
+Random
+---------
+uniform_int_distribution
+```c++
+#include <random>
+
+//...
+
+std::random_device r;
+std::default_random_engine generator(r());
+std::uniform_int_distribution<> distribution(0,9);
+cout << distribution(generator) << endl;
+```
+
+
+
+
+[Legacy]
+std::rand() // Pseudo-random integral value between ​0​ and RAND_MAX.
+```
+static_cast<double>(std::rand()) / RAND_MAX;
+```
+
+Convert char to int
+---------
+```
+(int) c; // convert c to ASCII code
+static_cast<int>(c); // also convert c to ASCII code
+
+int d = c - '0'; // **** Do this
+```
+
+Char Operations
+---------
+isalnum(c)
+isalpha(c)
+islower(c)
+isupper(c)
+isdigit(c)
+tolower(c)
+toupper(c)
+
+cmath
+----------
+abs()
+log10()
+log2()
+pow()
+sqrt()
+ceil()
+floor()
 

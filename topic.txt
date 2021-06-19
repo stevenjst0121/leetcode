@@ -16,7 +16,8 @@ Data Structures
 * Heap
 
 * Hashtable
-    - TODO Understand how it is implemented
+    - Understand how it is implemented
+    - Good hash function is important
 
 * Tree
     - Binary Search Tree

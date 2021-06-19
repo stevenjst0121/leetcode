@@ -2,6 +2,8 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
 =======================================
 
 ** Really really understand the question, and ask clarification questions
+    - Notice and understand the special condition, what does it help to simply the problem?
+        e.g. timestamps are increasing, intervals are disjoint...
 
 ** Sometimes, it's just helpful to draw the damn array/list/map on paper to visualize it
 
@@ -32,7 +34,9 @@ BRAINSTORM TIPS FOR INTERVIEW QUESTIONS
         (Sometimes in order to build from smallest, need to loop range(N - 1, -1, -1))
     - There is even bi-directional DP, where you construct such an array from both sides.
 
-* When asked to remove stuff, instead of deleting, think about use a "builer" to recreate
+* When asked to remove stuff, instead of deleting, think about use a "builder" to recreate
+
+* Think of using a counter maybe when being asked for finding a unique solution?
 
 
 
@@ -43,8 +47,8 @@ Things to Remember
 Find mid point of linked list
 ---------------------------------------
 
-slow = head
-fast = head
+slow = dummyhead
+fast = dummyhead
 while fast and fast.next:
     slow = slow.next
     fast = fast.next.next
