@@ -87,3 +87,7 @@ The idea is to partition given relationships (connections), such as find connect
 
 * Quick Select
     - Find kth smallest element
+
+* Two Heaps
+    - One max heap holding all smaller items and one min heap holding all larger items
+    - O(1) access to middle

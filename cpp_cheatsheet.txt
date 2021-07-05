@@ -8,7 +8,7 @@ if (index == string::npos) {
 vector
 ---------
 ```
-string& last = v.back();
+string& last = v.back(); // reference
 v.pop_back();
 cout << last << endl; // BAD!!!! last is destroyed
 ```
@@ -35,7 +35,7 @@ insert() // return value is a pair (iterator to inserted element, bool)
 erase() // return value is pair (iterator following last removed element, number of element removed, 0 or 1)
 
 
-Heap
+Heap (use priority_queue instead)
 ---------
 std::is_heap
 std::make_heap
@@ -73,6 +73,14 @@ public:
 };
 ```
 
+priority_queue
+---------
+priority_queue<int> q;
+priority_queue<int, vector<int>, greater<int>> q;
+q.top()
+q.push(1);
+q.pop();
+
 list
 ---------
 push_back()
@@ -98,6 +106,10 @@ t = std::make_tuple(1, "abc", 'x');
 int a = std::get<0>(t);
 string s = std::get<1>(t);
 
+multiset
+---------
+ordered set that allows duplicates (insertion is log(N))
+Can store iterators, they are not invalidated upon insertion
 
 algorithms
 ---------
