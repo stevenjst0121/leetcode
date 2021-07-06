@@ -785,6 +785,8 @@ def coinChange(self, coins: List[int], amount: int) -> int:
 	return counts[-1] if counts[-1] != float("Inf") else -1
 ```
 
+* If bottom-up is hard to think of, use top-down (recursion + memoization), the key idea is to realize the optimal subproblem property.
+
 </details>
 
 #### 323. Number of Connected Components in an Undirected Graph
@@ -821,7 +823,7 @@ def coinChange(self, coins: List[int], amount: int) -> int:
 
 </details>
 
-#### 354. Russian Doll Envelopes
+#### 354. [MEMO] Russian Doll Envelopes
 <details>
 <summary>See Memo</summary>
 
@@ -1107,7 +1109,7 @@ if lo <= hi:
 
 </details>
 
-#### 1043. Longest Common Subsequence
+#### 1143. Longest Common Subsequence
 <details>
 <summary>See Memo</summary>
 

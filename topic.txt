@@ -10,14 +10,16 @@ Data Structures
     - The nature of the stack is that bottom items will never be touched until the top one is poped out. If needed, you can store some "so far" value along with the value in the stack.
         - For example: "minimum value so far in the stack".
         - For example: "count of last repeated num in the stack".
+    - stack of stack might help to solve multi-dimensioning problem?
 
 * Queue
 
-* Heap
+* Heap/Priority Queue
 
 * Hashtable
     - Understand how it is implemented
     - Good hash function is important
+    - C++ map is actually implmented as a red-black tree
 
 * Tree
     - Binary Search Tree
@@ -45,9 +47,9 @@ Algorithms
     - After finishing a DP solution, think if keeping every DP point is needed. Maybe just track "max so far" or "min so far" is good enough
 
 * Two Pointers
-    - TODO
 
 * Binary Search
+    - Basic concept is divide and conquer, think whether subproblems can be divided into left and right parts
 
 * Sort
 
@@ -77,6 +79,7 @@ The idea is to partition given relationships (connections), such as find connect
 
 * Backtracking
     - Backtracking is an algorithm for finding all solutions by exploring all potential candidates.
+    (This is pretty much brute force, try to use with greedy)
 
 * Greedy
     - Greedy means try a local optimal solution first
