@@ -176,7 +176,7 @@ cmath
 abs()
 log10()
 log2()
-pow()
+pow(base, exp)
 sqrt()
 ceil()
 floor()
