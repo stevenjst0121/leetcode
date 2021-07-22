@@ -6,15 +6,10 @@
 #         self.right = right
 class BSTIterator:
     def __init__(self, root: TreeNode):
+        self.stack = []
         self.curr = root
-        self.stack = deque()
 
     def next(self) -> int:
-        """
-        @return the next smallest number
-        Time is O(N)
-        Space is O(K) where K is maximum height
-        """
         while self.curr or self.stack:
             if self.curr:
                 self.stack.append(self.curr)
@@ -27,9 +22,6 @@ class BSTIterator:
             return result
 
     def hasNext(self) -> bool:
-        """
-        @return whether we have a next smallest number
-        """
         return self.curr or self.stack
 
 

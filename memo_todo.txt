@@ -2,3 +2,7 @@
 713. Subarray Product Less Than K
 295. Find Median from Data Stream
 277. Find the Celebrity
+1014. Best Sightseeing Pair
+465. Optimal Account Balancing
+6. ZigZag Conversion
+128. Longest Consecutive Sequence

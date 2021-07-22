@@ -44,7 +44,7 @@ Algorithms
     - Top-down: Recursion + memoization, store resolved subproblems somwhere to avoid duplication
     - Bottom-up: Solve all subproblems first and get the needed answer from store
       (Sometimes in order to build from smallest, need to loop range(N - 1, -1, -1))
-    - There is even bi-directional DP, where you construct such an array from both sides.
+    - Sometimes need to build two dp arrays from both sides, like 1014. Best Sightseeing Pair, 123. Best Time to Buy and Sell Stock III
     - Most of times, dp[i][j] can already represent the result. But sometimes, such as problem 718, the result is max of all dp[i][j]
     - After finishing a DP solution, think if keeping every DP point is needed. Maybe just track "max so far" or "min so far" is good enough
 
