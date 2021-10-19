@@ -276,6 +276,42 @@ return max_area
 
 </details>
 
+#### 99. Recover Binary Search Tree
+<details>
+<summary>See Memo</summary>
+
+* How to find two swapped values in a almost sorted list
+```c++
+// Naive
+int i = 0;
+for (; i < list.size() - 1; ++i) {
+	if (list[i]->val > list[i + 1]->val) {
+		break;
+	}
+}
+int j = list.size() - 1;
+for (; j > i; --j) {
+	if (list[j]->val < list[j - 1]->val) {
+		break;
+	}
+}
+
+swap(list[i]->val, list[j]->val);
+
+// Better
+if (prev && node->val < prev->val) {
+	y = node;
+	if (!x) {
+		x = prev;
+	} else {
+		break;
+	}
+}
+```
+* Use of Morris algorithm to solve in O(1) space
+
+</details>
+
 #### 123. Best Time to Buy and Sell Stock III
 <details>
 <summary>See Memo</summary>
@@ -728,6 +764,86 @@ if not c.isdigit() and c != " " or i == len(s) - 1:
 * Form graph and update degrees. Be care when two words have exact same front part, but first word is longer than second word.
 * Topological sort to find possible result
 * Result is only valid if it contains all the letters
+
+</details>
+
+#### 279. Perfect Squares
+<details>
+<summary>See Memo</summary>
+
+* Should think of dp
+```C++
+class Solution {
+public:
+    int numSquares(int n) {
+        // DP, O(n * sqrt(n))
+        vector<int> squares = {1};
+        int dp[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i <= n; ++i) {
+            // Add perfect squares if needed
+            if (static_cast<int>(sqrt(i)) > static_cast<int>(sqrt(squares.back()))) {
+                squares.push_back(i);
+            }
+
+            // Find min
+            int minnum = INT_MAX;
+            for (auto square : squares) {
+                if (i - square < 0) {
+                    break;
+                }
+
+                minnum = min(minnum, 1 + dp[i - square]);
+            }
+            dp[i] = minnum;
+        }
+
+        return dp[n];
+    }
+};
+```
+* Should also think of Greedy approach, and here need to be greedy with the count of numbers
+* Greedy approach can be further improved to a BFS of an N-ary tree
+```C++
+class Solution {
+public:
+    int numSquares(int n) {
+        // [MEMO] BFS + N-ary tree
+        // The above greedy solution is basically a BFS on an N-array tree,
+        // where N is sqrt(N) - the number of perfect squares
+        for (int i = 1; i <= sqrt(n); ++i) {
+            d_squares.insert(i * i);
+        }
+
+        deque<int> queue = {n};
+        int level = 1;
+        while (level <= n) {
+            int size = queue.size();
+            for (int i = 0; i < size; ++i) {
+                int res = queue.front();
+                queue.pop_front();
+                if (d_squares.find(res) != d_squares.end()) {
+                    return level;
+                }
+
+                // Not found, form next level leaves
+                for (auto square : d_squares) {
+                    if (res - square > 0) {
+                        queue.push_back(res - square);
+                    }
+                }
+            }
+            ++level;
+        }
+
+        return level;
+    }
+
+private:
+    set<int> d_squares;
+};
+```
 
 </details>
 

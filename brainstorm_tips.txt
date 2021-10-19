@@ -65,5 +65,5 @@ DFS
  - pop node out
  - `for nei in node:`
  - do something and push nei to stack
- - use visied to keep track
+ - use visited to keep track
  - (Can also use coloring to mark nodes if needed)

@@ -6,3 +6,5 @@
 465. Optimal Account Balancing
 6. ZigZag Conversion
 128. Longest Consecutive Sequence
+3. Longest Substring Without Repeating Characters
+1769. Minimum Number of Operations to Move All Balls to Each Box

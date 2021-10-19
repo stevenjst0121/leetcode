@@ -50,6 +50,7 @@ Algorithms
 
 * Two Pointers
     - Even 3 pointers: 548. Split Array with Equal Sum? Maybe start with traversing the middle pointer?
+    - Accumulative sum from two sides?
 
 * Binary Search
     - Basic concept is divide and conquer, think whether subproblems can be divided into left and right parts
@@ -83,6 +84,7 @@ The idea is to partition given relationships (connections), such as find connect
 * Backtracking
     - Backtracking is an algorithm for finding all solutions by exploring all potential candidates.
     (This is pretty much brute force, try to use with greedy)
+    - !!!! Be careful to only use backtrack when need to find all possibilities. When the problem is asking for optimal solution, consider DP first!
 
 * Greedy
     - Greedy means try a local optimal solution first
@@ -98,3 +100,5 @@ The idea is to partition given relationships (connections), such as find connect
 * Two Heaps
     - One max heap holding all smaller items and one min heap holding all larger items
     - O(1) access to middle
+
+* Accumulative Sum
