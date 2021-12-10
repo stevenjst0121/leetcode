@@ -46,7 +46,8 @@ Algorithms
       (Sometimes in order to build from smallest, need to loop range(N - 1, -1, -1))
     - Sometimes need to build two dp arrays from both sides, like 1014. Best Sightseeing Pair, 123. Best Time to Buy and Sell Stock III
     - Most of times, dp[i][j] can already represent the result. But sometimes, such as problem 718, the result is max of all dp[i][j]
-    - After finishing a DP solution, think if keeping every DP point is needed. Maybe just track "max so far" or "min so far" is good enough
+    - After finishing a DP solution, think if keeping every DP point is needed. Maybe just track "max so far" or "min so far" is good enough, this helps to reduce space complexity
+    - When dealing with string or array, think of using index for dp, e.g. 115. Distinct Subsequences.
 
 * Two Pointers
     - Even 3 pointers: 548. Split Array with Equal Sum? Maybe start with traversing the middle pointer?
@@ -58,6 +59,10 @@ Algorithms
 * Sort
 
 * Bit manipulation
+    0	0	0
+    0	1	1
+    1	0	1
+    1	1	0
 
 * DFS
     - store some information and return as useful info for the problem, such as height/depth
@@ -102,3 +107,8 @@ The idea is to partition given relationships (connections), such as find connect
     - O(1) access to middle
 
 * Accumulative Sum
+    - 370 is an interesting application of accumulative sum!
+
+* Use index to save extra space
+    - 41. First Missing Positive
+    - 442. Find All Duplicates in an Array

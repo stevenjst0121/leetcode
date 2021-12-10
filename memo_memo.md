@@ -149,15 +149,6 @@ for i in range(N // 2 + N % 2):
 
 </details>
 
-#### 53. Maximum Subarray
-<details>
-<summary>See Memo</summary>
-
-* dp bottom up
-* Key concept is to determine if the current subarray is worth keeping or no (can start from begin or end)
-
-</details>
-
 #### 56. Merge Intervals
 <details>
 <summary>See Memo</summary>
@@ -268,14 +259,6 @@ return max_area
 
 </details>
 
-#### 98. Validate Binary Search Tree
-<details>
-<summary>See Memo</summary>
-
-* DFS with lower and upper range
-
-</details>
-
 #### 99. Recover Binary Search Tree
 <details>
 <summary>See Memo</summary>
@@ -312,23 +295,65 @@ if (prev && node->val < prev->val) {
 
 </details>
 
+#### 115. Distinct Subsequences
+<details>
+<summary>See Memo</summary>
+
+\[Important\]
+
+* Realize how an recursive approach looks like. Try to always think of using indexes with subsequences.
+	- Recursive approach can be optimized using memoization, but still could cause call stack to overflow, and also with a lot of function call overhead.
+* Bottom-up DP
+	- `dp[i][j]` represents the unique number of subsequences of `s[i:]` for `t[j:]`
+	- Use +1 array, e.g. M+1 * N+1
+	- Be careful with the base cases
+```python
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        M, N = len(s), len(t)
+        dp = [[0] * (N + 1) for _ in range(M + 1)]
+        
+        for i in range(M + 1):
+            dp[i][N] = 1
+        
+        for i in range(M - 1, -1, -1):
+            for j in range(N - 1, -1, -1):
+                if s[i] == t[j]:
+                    dp[i][j] = dp[i + 1][j] + dp[i + 1][j + 1]
+                else:
+                    dp[i][j] = dp[i + 1][j]
+        
+        return dp[0][0]
+```
+* Think about whether a 2D array dp solution can be optimized on space to only use 1D array
+```python
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        M, N = len(s), len(t)
+        dp = [0] * (N + 1)
+        
+        for i in range(M - 1, -1, -1):
+            prev = 1
+            for j in range(N - 1, -1, -1):
+                old = dp[j]
+                if s[i] == t[j]:
+                    dp[j] += prev
+                prev = old
+        
+        return dp[0]
+```
+* See also 940 Distinct Subsequences II
+
+</details>
+
 #### 123. Best Time to Buy and Sell Stock III
 <details>
 <summary>See Memo</summary>
 
-* DP from two sides
+* Find max_proft_so_far from two sides
 	- max profit from left till i
 	- max profit from right till j
 	- Find i == j where total profit is max
-
-</details>
-
-#### 125. Valid Palindrome
-<details>
-<summary>See Memo</summary>
-
-* Two pointers
-* Use isalnum()
 
 </details>
 
@@ -883,6 +908,32 @@ private:
 
 </details>
 
+#### 316. Remove Duplicate Letters
+<details>
+<summary>See Memo</summary>
+
+* The important thing here is to understand the question, and come up with a strategy to find the result in O(N)
+	* Letter by letter, choose one letter that has trailing letters contains all others. And choose the smallest letter if same
+```python
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        # [MEMO]
+        # Need to understand the problem, what's the strategy to pick one letter at a time
+        c = Counter(s)
+        pos = 0
+        for i in range(len(s)):
+            if s[i] < s[pos]:
+                pos = i
+            c[s[i]] -= 1
+            if c[s[i]] == 0:
+                break
+
+        return s[pos] + self.removeDuplicateLetters(s[pos + 1 :].replace(s[pos], "")) if s else ""
+```
+
+	* Using a stack to remove letters while building. Theory is that when we encounter a letter that is not seen before, remove all previous letters in stack that are larger than the current letter and has the same letter later at some point.
+
+</details>
 #### 322. Coin Change
 <details>
 <summary>See Memo</summary>
@@ -899,6 +950,22 @@ def coinChange(self, coins: List[int], amount: int) -> int:
 		for x in range(coin, amount + 1):
 			counts[x] = min(counts[x], counts[x - coin] + 1)
 	return counts[-1] if counts[-1] != float("Inf") else -1
+```
+
+* This is a more intuitive DP, but a bit slower than solution above
+* Basically for the sample data set, dp\[11\] = min(1 + dp\[10\], 1 + dp\[9\], 1 + dp\[6\])
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [0] * (amount + 1)
+        for i in range(1, amount + 1):
+            num = float("Inf")
+            for coin in coins:
+                if i - coin >= 0 and dp[i - coin] >= 0:
+                    num = min(num, 1 + dp[i - coin])
+            dp[i] = num if num < float("Inf") else -1
+        
+        return dp[-1]
 ```
 
 * If bottom-up is hard to think of, use top-down (recursion + memoization), the key idea is to realize the optimal subproblem property.
@@ -965,7 +1032,17 @@ def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
 		max_russian = max(max_russian, dp[i])
 	return max_russian
 ```
-* Another more intuitive way is to build another array within only unique elements in increasing order, and then find the longest common subsequence
+
+* Longest Common Subsequence does not apply here, because pairs cannot be sorted in uniquely increasing way without removing some pairs.
+
+</details>
+
+#### 370. Range Addition
+<details>
+<summary>See Memo</summary>
+
+* Could sort the updates by starting index, but still won't reduce time complexity much if all updates cover large ranges
+* Cumulative sum!!! But only track increments at borders and read it out once. Time complexity is O(N) or O(M), whichever is larger.
 
 </details>
 
@@ -1040,15 +1117,6 @@ def pickIndex(self) -> int:
 * Get counter of all numbers
 * Loop through counter
 	* Make sure to handle different cases for k > 0 and k == 0
-
-</details>
-
-#### 543. Diameter of Binary Tree
-<details>
-<summary>See Memo</summary>
-
-* Define DFS to return height of tree
-* Calculate diameter and update max_diameter while dfs
 
 </details>
 
@@ -1201,6 +1269,15 @@ class FreqStack:
 
 </details>
 
+#### 940. Distinct Subsequences II
+<details>
+<summary>See Memo</summary>
+
+* Trick is to count empty sequence during DP and minus it in the end
+* Trick is to keep track of dp result prev of adding a certain letter, which represents duplicate when that letter appears again
+
+</details>
+
 #### 986. Interval List Intersections
 <details>
 <summary>See Memo</summary>
@@ -1222,6 +1299,15 @@ if lo <= hi:
 
 * Traverse will tracking position
 * Store (row, col, val) and record map by col, can directly sort on tuple
+
+</details>
+
+#### 1048. Longest String Chain
+<details>
+<summary>See Memo</summary>
+
+* Sort words by len
+* Bottom-up dp
 
 </details>
 
@@ -1257,15 +1343,6 @@ for (int i = n - 1; i >= 0; --i) {
 }
 return dp[0][0];
 ```
-
-</details>
-
-#### 1048. Longest String Chain
-<details>
-<summary>See Memo</summary>
-
-* Sort words by len
-* Bottom-up dp
 
 </details>
 
@@ -1311,7 +1388,41 @@ return dp[0][0];
 <summary>See Memo</summary>
 
 * Cannot use DP as one bigger problem does not depends directly on its subproblems
+	* Even use dp[i] = [count, set(substr)], there is no way to remember all possible unique sets
 * Use backtrack
+
+</details>
+
+#### 1987. Number of Unique Good Subsequences
+<details>
+<summary>See Memo</summary>
+
+* All good subsequences must start with '1', except for '0'.
+* Trick is to count good subsequences ends in 0 and 1 separately
+* '0' needs to considered separately as well
+
+```c++
+class Solution {
+public:
+    int numberOfUniqueGoodSubsequences(string binary) {
+        // [MEMO] Brilliant DP solution
+        // Trick is to count good subsequences ends in 0 and 1 separately
+        // '0' needs to be counted separately
+        int mod = 1e9 + 7, dp[2] = {0, 0};
+        bool has_zero = false;
+        for (auto& c : binary) {
+            if (c == '0') {
+                dp[0] = dp[0] + dp[1];
+                has_zero = true;
+            } else if (c == '1') {
+                dp[1] = dp[0] + dp[1] + 1;
+            }
+        }
+        
+        return (dp[0] + dp[1] + has_zero) % mod;
+    }
+};
+```
 
 </details>
 
